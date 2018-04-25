@@ -1,4 +1,4 @@
-package com.hoooopa.hoopa.hoopa.base;
+package com.hoooopa.hoopa.hoopa.model.base;
 
 import android.support.v7.app.AppCompatActivity;
 

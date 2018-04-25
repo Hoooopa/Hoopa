@@ -1,6 +1,6 @@
-package com.hoooopa.hoopa.hoopa.ui.guide;
+package com.hoooopa.hoopa.hoopa.model.guide;
 
-import com.hoooopa.hoopa.hoopa.base.BaseActivity;
+
 
 /**
  * Created by Pray on 2018/4/25.
