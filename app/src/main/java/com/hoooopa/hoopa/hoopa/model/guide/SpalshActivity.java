@@ -12,9 +12,7 @@ import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
 
 import com.hoooopa.hoopa.hoopa.R;
-import com.hoooopa.hoopa.hoopa.base.BasePresenter;
 import com.hoooopa.hoopa.hoopa.constants.Constants;
-import com.hoooopa.hoopa.hoopa.base.BaseActivity;
 import com.hoooopa.hoopa.hoopa.model.home.MainActivity;
 
 import java.util.Calendar;

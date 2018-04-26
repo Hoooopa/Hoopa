@@ -19,6 +19,7 @@ public abstract class BasePresenter<T> {
     public boolean isViewAttached(){
         return  mViewRef !=null && mViewRef.get() !=null;
     }
+
     public  void detachView(){
         if(mViewRef!=null){
             mViewRef.clear();
