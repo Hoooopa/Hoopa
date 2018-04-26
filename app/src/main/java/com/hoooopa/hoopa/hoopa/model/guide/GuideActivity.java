@@ -8,4 +8,7 @@ import com.hoooopa.hoopa.hoopa.model.base.BaseActivity;
  */
 
 public class GuideActivity extends BaseActivity {
+
+            
+
 }
