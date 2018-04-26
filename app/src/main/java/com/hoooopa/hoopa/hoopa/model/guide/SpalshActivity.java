@@ -1,39 +1,37 @@
 package com.hoooopa.hoopa.hoopa.model.guide;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Looper;
 import android.os.Message;
+import android.support.v7.app.AppCompatActivity;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
 
 import com.hoooopa.hoopa.hoopa.R;
+import com.hoooopa.hoopa.hoopa.base.BasePresenter;
 import com.hoooopa.hoopa.hoopa.constants.Constants;
-import com.hoooopa.hoopa.hoopa.model.base.BaseActivity;
+import com.hoooopa.hoopa.hoopa.base.BaseActivity;
 import com.hoooopa.hoopa.hoopa.model.home.MainActivity;
 
-import java.lang.ref.WeakReference;
 import java.util.Calendar;
 
 import butterknife.BindView;
-import butterknife.BindViews;
 import butterknife.ButterKnife;
 
 /**
  * Created by Pray on 2018/4/25.
  */
 
-public class SpalshActivity extends BaseActivity {
+public class SpalshActivity extends AppCompatActivity {
 
     @BindView(R.id.actvity_spalsh_iv)
     ImageView iv;
 
-    private int durationKeepTime = 2500 ;
+    private int durationKeepTime = 1500 ;             //动画持续时间
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +75,7 @@ public class SpalshActivity extends BaseActivity {
         scaleAnimation.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
+                //根据常量标志来判断是否是第一次安装APP（导致调试的时候每次启动都会先进入GuideActivity.java）
                 if(Constants.FIRST_INSTALL_APP){
                     Constants.FIRST_INSTALL_APP = false;
                     mHandler.sendEmptyMessageDelayed(0,3000);
@@ -98,16 +97,19 @@ public class SpalshActivity extends BaseActivity {
         iv.startAnimation(scaleAnimation);
     }
 
+    /**
+     * 这个Handler还是有问题，仅仅加个注解还是存在内存泄漏的危险
+     */
     @SuppressLint("HandlerLeak")
     public Handler mHandler = new Handler(){
         public void handleMessage(Message msg){
             switch (msg.what){
                 case 0 :startActivity(new Intent(SpalshActivity.this,GuideActivity.class));
-                        overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
+                        overridePendingTransition(R.anim.anim_spalsh_fade_in,R.anim.anim_spalsh_fade_out);
                         finish();
                         break;
                 case 1 :startActivity(new Intent(SpalshActivity.this, MainActivity.class));
-                        overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
+                        overridePendingTransition(R.anim.anim_spalsh_fade_in,R.anim.anim_spalsh_fade_out);
                         finish();
                         break;
                 default:break;

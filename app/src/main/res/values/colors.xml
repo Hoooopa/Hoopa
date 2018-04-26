@@ -11,4 +11,8 @@
     <color name="textColorThird">#BDBDBD</color>
     <!--纯色系-->
     <color name="white">#FFFFFF</color>
+
+
+    <!--GuideActivity的Button的背景颜色-->
+    <color name="guide_bt_text">#75DDFB</color>
 </resources>

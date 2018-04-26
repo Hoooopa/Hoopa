@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Hoopa</string>
+
+    <!--GuideActivity的Button的文字-->
+    <string name="guide_bt_text">Hi ! GUYS !</string>
+
 </resources>

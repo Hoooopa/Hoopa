@@ -28,5 +28,7 @@ dependencies {
     //Butterknife
     implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    //ViewPager底部的小点儿
+    compile 'me.relex:circleindicator:1.2.2@aar'
 
 }

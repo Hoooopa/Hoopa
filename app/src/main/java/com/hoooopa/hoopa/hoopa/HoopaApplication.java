@@ -3,13 +3,29 @@ package com.hoooopa.hoopa.hoopa;
 import android.app.Activity;
 import android.app.Application;
 import android.os.Bundle;
-import android.view.View;
-import android.view.WindowManager;
 
 /**
  * Created by Pray on 2018/4/25.
  * 一个程序有且仅有一个Application，通过Application能做很多事
  * 在Manifest中指定Application：android:name=".HoopaApplication"
+ *
+ * 规定几个命名规范：
+ *   drawable内:
+ *      bt_guide_bg.xml
+ *      iv_spalsh_bg.png
+ *   layout内:
+ *      activity_guide.xml
+ *      fragemnt_cookbook.xml
+ *   layout内的控件:
+ *      actvity_spalsh_iv
+ *      item_cookbook_tv_1
+ *   资源命名
+ *      guide_bt_color
+ *      guide_bt_text
+ *
+ *   Java内部变量命名
+ *      btLogin
+ *      vpGuide
  */
 
 public class HoopaApplication extends Application {
