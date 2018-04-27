@@ -30,5 +30,7 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     //ViewPager底部的小点儿
     compile 'me.relex:circleindicator:1.2.2@aar'
+    //Bottombar
+    compile 'com.roughike:bottom-bar:2.3.1'
 
 }

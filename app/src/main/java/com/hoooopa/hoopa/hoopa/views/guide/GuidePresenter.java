@@ -1,12 +1,9 @@
-package com.hoooopa.hoopa.hoopa.model.guide;
+package com.hoooopa.hoopa.hoopa.views.guide;
 
 import android.content.Context;
-import android.location.GpsSatellite;
-import android.media.Image;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.hoooopa.hoopa.hoopa.HoopaApplication;
 import com.hoooopa.hoopa.hoopa.R;
 import com.hoooopa.hoopa.hoopa.base.BasePresenter;
 

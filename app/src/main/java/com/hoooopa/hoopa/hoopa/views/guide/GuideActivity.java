@@ -1,4 +1,4 @@
-package com.hoooopa.hoopa.hoopa.model.guide;
+package com.hoooopa.hoopa.hoopa.views.guide;
 
 
 import android.content.Intent;
@@ -12,7 +12,7 @@ import android.widget.Button;
 import com.hoooopa.hoopa.hoopa.R;
 import com.hoooopa.hoopa.hoopa.adapter.GuideAdapter;
 import com.hoooopa.hoopa.hoopa.base.BaseActivity;
-import com.hoooopa.hoopa.hoopa.model.home.MainActivity;
+import com.hoooopa.hoopa.hoopa.views.main.MainActivity;
 
 import java.util.List;
 
@@ -22,6 +22,9 @@ import me.relex.circleindicator.CircleIndicator;
 
 /**
  * Created by Pray on 2018/4/25.
+ *
+ * 其实这个Activity没有数据请求等操作，所以并不需要使用MVP。
+ * 就是为了练个手
  */
 
 public class GuideActivity extends BaseActivity<IGuideView,GuidePresenter> implements IGuideView{

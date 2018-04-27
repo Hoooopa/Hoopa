@@ -1,0 +1,4 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/ic_gank_icon_selected" android:state_selected="true" />
+    <item android:drawable="@drawable/ic_gank_icon_unselected" android:state_selected="false" />
+</selector>

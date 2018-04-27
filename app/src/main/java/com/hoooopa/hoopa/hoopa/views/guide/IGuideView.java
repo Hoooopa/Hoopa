@@ -1,7 +1,6 @@
-package com.hoooopa.hoopa.hoopa.model.guide;
+package com.hoooopa.hoopa.hoopa.views.guide;
 
 import android.view.View;
-import android.widget.ListView;
 
 import java.util.List;
 

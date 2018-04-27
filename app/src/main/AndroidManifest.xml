@@ -9,8 +9,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".model.guide.SpalshActivity">
+        android:theme="@style/AppTheme.TransNav">
+        <activity android:name=".views.guide.SpalshActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -18,8 +18,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".model.home.MainActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".model.guide.GuideActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".views.main.MainActivity" android:screenOrientation="portrait" android:exported="true"/>
+        <activity android:name=".views.guide.GuideActivity" android:screenOrientation="portrait"/>
 
     </application>
 

@@ -1,4 +1,4 @@
-package com.hoooopa.hoopa.hoopa.model.guide;
+package com.hoooopa.hoopa.hoopa.views.guide;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -13,7 +13,7 @@ import android.widget.ImageView;
 
 import com.hoooopa.hoopa.hoopa.R;
 import com.hoooopa.hoopa.hoopa.constants.Constants;
-import com.hoooopa.hoopa.hoopa.model.home.MainActivity;
+import com.hoooopa.hoopa.hoopa.views.main.MainActivity;
 
 import java.util.Calendar;
 

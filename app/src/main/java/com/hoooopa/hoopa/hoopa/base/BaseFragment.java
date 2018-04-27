@@ -8,7 +8,7 @@ import android.support.v4.app.Fragment;
  * Created by Pray on 2018/4/25.
  */
 
-public abstract class BaseFragment<V,P extends BasePresenter<V>> extends Fragment{
+public abstract class BaseFragment< V extends IBaseView , P extends BasePresenter<V> > extends Fragment{
 
     protected P mPresenter;
 
@@ -16,13 +16,23 @@ public abstract class BaseFragment<V,P extends BasePresenter<V>> extends Fragmen
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mPresenter = createPresenter();//创建Presenter
-        mPresenter.attachView((V)this);
+        try{
+            mPresenter.attachView((V) this);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        mPresenter.detachView();
+        try{
+            mPresenter.detachView();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 
     protected abstract P createPresenter();

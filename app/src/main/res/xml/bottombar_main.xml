@@ -1,0 +1,28 @@
+<tabs>
+    <tab
+        id="@+id/tab_home"
+        icon="@drawable/icon_home_bottombar"
+        title="主页"
+        barColorWhenSelected="@color/white"/>
+    <!--豆瓣的图标应该是找不到适合的了，所以就一个就够了-->
+    <tab
+        id="@+id/tab_douban"
+        icon="@drawable/ic_douban_icon"
+        title="豆瓣"
+        barColorWhenSelected="@color/white" />
+    <tab
+        id="@+id/tab_gank"
+        icon="@drawable/icon_gank_bottombar"
+        title="Gank"
+        barColorWhenSelected="@color/white"/>
+    <tab
+        id="@+id/tab_cook"
+        icon="@drawable/icon_cook_bottombar"
+        title="吃啥"
+        barColorWhenSelected="@color/white"/>
+    <tab
+        id="@+id/tab_other"
+        icon="@drawable/icon_home_bottombar"
+        title="XXX"
+        barColorWhenSelected="@color/white"/>
+</tabs>
