@@ -25,6 +25,9 @@ import me.relex.circleindicator.CircleIndicator;
  *
  * 其实这个Activity没有数据请求等操作，所以并不需要使用MVP。
  * 就是为了练个手
+ *
+ * 根据保存的Constant常量来判断是否是第一次安装并不适用。需要用sharedpreference来保存。后面修改
+ *
  */
 
 public class GuideActivity extends BaseActivity<IGuideView,GuidePresenter> implements IGuideView{

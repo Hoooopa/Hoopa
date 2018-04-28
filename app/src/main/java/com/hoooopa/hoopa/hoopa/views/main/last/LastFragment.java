@@ -15,7 +15,7 @@ import butterknife.Unbinder;
  * Created by Pray on 2018/4/27.
  */
 
-public class LastFragment extends BaseFragment<ILastView,LastPresenter> implements ILastView {
+public class LastFragment extends BaseFragment implements ILastView {
 
     private Unbinder unbinder;
 
@@ -26,6 +26,7 @@ public class LastFragment extends BaseFragment<ILastView,LastPresenter> implemen
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View view = inflater.inflate(R.layout.fragment_last,container,false);
         unbinder = ButterKnife.bind(this,view);
+        presenter = new LastPresenter();
         return view;
     }
 
@@ -35,10 +36,6 @@ public class LastFragment extends BaseFragment<ILastView,LastPresenter> implemen
 
     }
 
-    @Override
-    protected LastPresenter createPresenter() {
-        return presenter;
-    }
 
     /**
      * onDestroyView中进行解绑操作

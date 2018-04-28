@@ -62,7 +62,6 @@ public class MainActivity extends AppCompatActivity {
         fragmentList.add(new GankFragment());
         fragmentList.add(new CookFragment());
         fragmentList.add(new LastFragment());
-
         vpMain.setAdapter(new FragmentStatePagerAdapter(getSupportFragmentManager()) {
             @Override
             public Fragment getItem(int position) {

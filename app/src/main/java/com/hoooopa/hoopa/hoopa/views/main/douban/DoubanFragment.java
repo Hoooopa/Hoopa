@@ -15,7 +15,7 @@ import butterknife.Unbinder;
  * Created by Pray on 2018/4/27.
  */
 
-public class DoubanFragment extends BaseFragment<IDoubanView,DoubanPresenter> implements IDoubanView{
+public class DoubanFragment extends BaseFragment implements IDoubanView{
 
     private Unbinder unbinder;
 
@@ -25,6 +25,7 @@ public class DoubanFragment extends BaseFragment<IDoubanView,DoubanPresenter> im
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View view = inflater.inflate(R.layout.fragment_douban,container,false);
         unbinder = ButterKnife.bind(this,view);
+        presenter = new DoubanPresenter();
         return view;
     }
 
@@ -32,10 +33,6 @@ public class DoubanFragment extends BaseFragment<IDoubanView,DoubanPresenter> im
     public void onActivityCreated(Bundle savedInstanceState){
         super.onActivityCreated(savedInstanceState);
 
-    }
-    @Override
-    protected DoubanPresenter createPresenter() {
-        return presenter;
     }
 
     /**

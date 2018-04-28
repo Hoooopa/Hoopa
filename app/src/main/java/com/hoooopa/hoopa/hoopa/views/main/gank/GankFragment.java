@@ -15,7 +15,7 @@ import butterknife.Unbinder;
  * Created by Pray on 2018/4/27.
  */
 
-public class GankFragment extends BaseFragment<IGankView,GankPresenter> implements IGankView{
+public class GankFragment extends BaseFragment implements IGankView{
 
     private Unbinder unbinder;
 
@@ -25,6 +25,7 @@ public class GankFragment extends BaseFragment<IGankView,GankPresenter> implemen
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View view = inflater.inflate(R.layout.fragment_gank,container,false);
         unbinder = ButterKnife.bind(this,view);
+        presenter = new GankPresenter();
         return view;
     }
 
@@ -32,10 +33,6 @@ public class GankFragment extends BaseFragment<IGankView,GankPresenter> implemen
     public void onActivityCreated(Bundle savedInstanceState){
         super.onActivityCreated(savedInstanceState);
 
-    }
-    @Override
-    protected GankPresenter createPresenter() {
-        return presenter;
     }
 
     /**

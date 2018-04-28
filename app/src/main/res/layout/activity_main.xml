@@ -10,13 +10,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <android.support.v4.view.ViewPager
+        <com.hoooopa.hoopa.hoopa.widget.MyViewPager
             android:id="@+id/activity_main_vp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:descendantFocusability="blocksDescendants"/>
+            android:layout_height="match_parent" />
 
     </android.support.v4.widget.NestedScrollView>
+
+
+
+
 
     <com.roughike.bottombar.BottomBar
         android:id="@+id/activity_main_bottombar"
