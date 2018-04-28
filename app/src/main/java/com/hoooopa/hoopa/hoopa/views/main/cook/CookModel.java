@@ -20,31 +20,31 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class CookModel {
 
-    public static void getBannerData( final ICookCallback callback){
+    private static Retrofit retrofit = new Retrofit.Builder()
+            .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .baseUrl(Constants.JD_CLOUD_COOK_BASE_URL)
+            .build();
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .addConverterFactory(GsonConverterFactory.create()).
-                addCallAdapterFactory(RxJava2CallAdapterFactory.create()).
-                baseUrl(Constants.JD_CLOUD_COOK_BASE_URL).build();
-
-                retrofit.create(HttpClient.class)
-                        .getCookByID(1, Constants.JD_CLOUD_COOK_APPKEY)
-                        .subscribeOn(Schedulers.io())
+    public void getCookDataByClassid(int classid, int start,int num,final ICookCallback.CookDataByClassidCallback callback){
+        retrofit.create(HttpClient.class)
+                .getCookDataByClassid(classid, start , num ,Constants.JD_CLOUD_COOK_APPKEY)
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<CookFromIDBean>() {
+                .subscribe(new Observer<CookFromListBean>() {
                     @Override
                     public void onSubscribe(Disposable d) {
 
                     }
 
                     @Override
-                    public void onNext(CookFromIDBean cookFromIDBean) {
-                        callback.onBannerDataSucess(cookFromIDBean);
+                    public void onNext(CookFromListBean cookFromListBean) {
+                        callback.onCookDataByClassid_Success(cookFromListBean);
                     }
 
                     @Override
                     public void onError(Throwable e) {
-
+                        callback.onCookDataByClassid_Failure("请求数据出错");
                     }
 
                     @Override
@@ -52,7 +52,34 @@ public class CookModel {
 
                     }
                 });
+    }
 
+    public void getCookDataByKeyword(String keyword, int num , final ICookCallback.CookDataByKeywordCallback callback){
+        retrofit.create(HttpClient.class)
+                .getCookDataByKeyword(keyword, num ,Constants.JD_CLOUD_COOK_APPKEY)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<CookFromListBean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(CookFromListBean cookFromListBean) {
+                        callback.onCookDataByKeyword_Success(cookFromListBean);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        callback.onCookDataByKeyword_Failure("请求数据出错");
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
     }
 
 }

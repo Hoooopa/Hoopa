@@ -28,6 +28,10 @@ public class CookFragment extends BaseFragment implements ICookView {
 
     private CookPresenter presenter;
 
+    @BindView(R.id.tv1)
+    TextView tv1;
+    @BindView(R.id.tv2)
+    TextView tv2;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
@@ -44,7 +48,30 @@ public class CookFragment extends BaseFragment implements ICookView {
     }
 
     private void initViews(){
-        presenter.getBannerData();
+        presenter.getBannerAndRcvData(true);
+    }
+
+
+
+    @Override
+    public void onQueryCookData_Start() {
+
+    }
+
+    @Override
+    public void onQueryCookData_ReStart() {
+
+    }
+
+    @Override
+    public void onQueryCookData_Success(String bannerData, String rcvData) {
+        tv1.setText(bannerData);
+        tv2.setText(rcvData);
+    }
+
+    @Override
+    public void onBannerAndRcv_Failure(String data) {
+        presenter.getBannerAndRcvData(false);
     }
 
     /**
@@ -56,20 +83,4 @@ public class CookFragment extends BaseFragment implements ICookView {
         unbinder.unbind();
     }
 
-
-    @Override
-    public void showBanner_Start() {
-
-    }
-
-    @Override
-    public void showBanner_Success(String datas) {
-
-    }
-
-
-    @Override
-    public void showBanner_Failure() {
-
-    }
 }

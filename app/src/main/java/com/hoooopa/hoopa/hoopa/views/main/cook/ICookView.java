@@ -8,11 +8,13 @@ import java.util.List;
 
 public interface ICookView {
 
-    void showBanner_Start();
+    void onQueryCookData_Start();
 
-    void showBanner_Success(String datas);   //成功则把返回的图片数据插入进去
+    void onQueryCookData_ReStart();
 
-    void showBanner_Failure();   //失败则显示没有数据的那个图片
+    void onQueryCookData_Success(String bannerData , String rcvData);   //成功则把返回的图片数据插入进去
+
+    void onBannerAndRcv_Failure(String data);   //失败则显示没有数据的那个图片
 
 
 }

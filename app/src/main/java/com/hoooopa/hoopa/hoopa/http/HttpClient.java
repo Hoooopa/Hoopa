@@ -21,7 +21,7 @@ public interface HttpClient {
      * @return
      */
     @GET("search")
-    Observable<CookFromListBean> getCookByKeyword( @Query("keyword") String keyword , @Query("num") int num , @Query("appkey") String appkey );
+    Observable<CookFromListBean> getCookDataByKeyword( @Query("keyword") String keyword , @Query("num") int num , @Query("appkey") String appkey );
 
     /**
      * Api设置了classid值，根据classid来查询信息
@@ -30,9 +30,11 @@ public interface HttpClient {
      * @param num     最大数量：最多20
      * @param appkey
      * @return
+     *
+     * classid 在 305 到 389 中选择 。start
      */
     @GET("byclass")
-    Observable<CookFromListBean> getCookByClass( @Query("classid") int classid , @Query("start") int start , @Query("num") int num , @Query("appkey") String appkey );
+    Observable<CookFromListBean> getCookDataByClassid( @Query("classid") int classid , @Query("start") int start , @Query("num") int num , @Query("appkey") String appkey );
 
     /**
      * 根据每道菜的具体id来请求。
@@ -41,6 +43,6 @@ public interface HttpClient {
      * @return
      */
     @GET("detail")
-    Observable<CookFromIDBean> getCookByID( @Query("id") int id , @Query("appkey") String appkey );
+    Observable<CookFromIDBean> getCookDataByID( @Query("id") int id , @Query("appkey") String appkey );
 
 }
