@@ -1,6 +1,7 @@
 package com.hoooopa.hoopa.hoopa.views.main.cook;
 
 import com.hoooopa.hoopa.hoopa.base.BasePresenter;
+import com.hoooopa.hoopa.hoopa.bean.cookbean.CookBase;
 import com.hoooopa.hoopa.hoopa.bean.cookbean.cookid.CookFromIDBean;
 import com.hoooopa.hoopa.hoopa.bean.cookbean.cooklist.CookFromListBean;
 import com.hoooopa.hoopa.hoopa.constants.Constants;
@@ -17,6 +18,11 @@ public class CookPresenter extends BasePresenter<ICookView> {
 
     private ICookView view;
 
+    private List<CookBase> bannerCookList = new ArrayList<>();
+
+    private List<CookBase> rcvCookList = new ArrayList<>();
+
+
     public CookPresenter(ICookView view){
         this.view = view;
     }
@@ -29,10 +35,17 @@ public class CookPresenter extends BasePresenter<ICookView> {
             view.onQueryCookData_ReStart();
         }
 
-        new CookModel().getCookDataByClassid(getRandomClassid(),getRandomStart(),15, new ICookCallback.CookDataByClassidCallback() {
+        new CookModel().getCookDataByClassid(getRandomClassid(),getRandomStart(),16, new ICookCallback.CookDataByClassidCallback() {
             @Override
             public void onCookDataByClassid_Success(CookFromListBean cookFromListBean) {
-                view.onQueryCookData_Success(cookFromListBean.getResult().getResult().getList().get(1).getContent(),"6566666666666666");
+                for (int i = 0 ; i < 16 ; i++ ){
+                    if (i < 6){
+                        bannerCookList.add(cookFromListBean.getResult().getResult().getList().get(i));
+                    }else {
+                        rcvCookList.add(cookFromListBean.getResult().getResult().getList().get(i));
+                    }
+                }
+                view.onQueryCookData_Success(bannerCookList,rcvCookList);
             }
 
             @Override
@@ -55,20 +68,6 @@ public class CookPresenter extends BasePresenter<ICookView> {
     private int getRandomStart(){
         return new Random().nextInt(4);
     }
-
-    private List<Integer> getRandomID(){
-
-        List<Integer> ids =new ArrayList<>();
-        ids.add(1);
-        ids.add(2);
-        ids.add(3);
-        ids.add(4);
-        ids.add(5);
-
-        return ids;
-    }
-
-
 
 
 }

@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.hoooopa.hoopa.hoopa.R;
 import com.hoooopa.hoopa.hoopa.base.BaseFragment;
 import com.hoooopa.hoopa.hoopa.base.BasePresenter;
+import com.hoooopa.hoopa.hoopa.bean.cookbean.CookBase;
 
 import java.lang.ref.PhantomReference;
 import java.util.List;
@@ -64,9 +65,9 @@ public class CookFragment extends BaseFragment implements ICookView {
     }
 
     @Override
-    public void onQueryCookData_Success(String bannerData, String rcvData) {
-        tv1.setText(bannerData);
-        tv2.setText(rcvData);
+    public void onQueryCookData_Success(List<CookBase> bannerData, List<CookBase> rcvData) {
+        tv1.setText(bannerData.get(1).getContent());
+        tv2.setText(rcvData.get(1).getContent());
     }
 
     @Override

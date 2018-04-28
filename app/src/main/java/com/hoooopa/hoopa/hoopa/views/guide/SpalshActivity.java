@@ -54,9 +54,9 @@ public class SpalshActivity extends AppCompatActivity {
         }else if (9 < hour & hour <= 17 ){
             iv.setImageResource(R.drawable.iv_spalsh_bg2);
         }else if (17 < hour & hour <=21){
-            iv.setImageResource(R.drawable.iv_spalsh_bg3);
-        }else {
             iv.setImageResource(R.drawable.iv_spalsh_bg4);
+        }else {
+            iv.setImageResource(R.drawable.iv_spalsh_bg3);
         }
     }
 
