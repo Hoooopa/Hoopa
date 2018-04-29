@@ -25,35 +25,65 @@ public class CookPresenter extends BasePresenter<ICookView> {
         this.view = view;
     }
 
-    public void getBannerAndRcvData(){
+    /**
+     * 获取轮播图Bnnaer的数据
+     */
+    public void getBannerData(){
 
+        view.onBannerData_Start();
 
-        view.onQueryCookData_Start();
-
-
-        new CookModel().getCookDataByClassid(getRandomClassid(),getRandomStart(),16, new ICookCallback.CookDataByClassidCallback() {
+        new CookModel().getCookDataByClassid(getRandomClassid() , getRandomStart() ,6 , new ICookCallback.CookDataByClassidCallback() {
             @Override
             public void onCookDataByClassid_Success(CookFromListBean cookFromListBean) {
-
-                if (cookFromListBean.getResult().getResult().getList().size() < 16 ){
-                    view.onQueryCookData_Failure("数据请求失败");
-                }else {
-
-                for (int i = 0 ; i < 16 ; i++ ){
-                    if (i < 6){
+                try {
+                    for (int i = 0 ; i < 6 ; i++ ) {
                         bannerCookList.add(cookFromListBean.getResult().getResult().getList().get(i));
-                    }else {
-                        rcvCookList.add(cookFromListBean.getResult().getResult().getList().get(i));
                     }
-                }
-                view.onQueryCookData_Success(bannerCookList,rcvCookList);
-
+                    view.onBannerData_Success(bannerCookList);
+                } catch (Exception e){
+                    view.onBannerData_Restart();
                 }
             }
 
             @Override
             public void onCookDataByClassid_Failure(String data) {
-                view.onQueryCookData_Failure(data);
+                /**
+                 * 用错误代码来判断是否是返回的数据Gson解析错误
+                 */
+                if (data.contains("com.google.gson")){
+                    view.onBannerData_Restart();
+                }else {
+                    view.onBannerData_Failure(data);
+                }
+            }
+        });
+
+    }
+
+
+    /**
+     * 获取列表Rcv的数据
+     */
+    public void getRcvData(int start){
+
+        view.onRcvData_Start();
+
+        new CookModel().getCookDataByClassid(getRandomClassid(), start, 10, new ICookCallback.CookDataByClassidCallback() {
+            @Override
+            public void onCookDataByClassid_Success(CookFromListBean data) {
+                try {
+                    for (int i = 0 ; i < 10 ; i++ ) {
+                        rcvCookList.add(data.getResult().getResult().getList().get(i));
+                    }
+                    view.onRcvData_Success(rcvCookList);
+                }catch (Exception e){
+                    view.onRcvData_Restart();
+                }
+            }
+
+            @Override
+            public void onCookDataByClassid_Failure(String data) {
+                view.onRcvData_Failure(data);
             }
         });
 

@@ -1,5 +1,6 @@
 package com.hoooopa.hoopa.hoopa.views.main.cook.mian;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.Toast;
 import com.hoooopa.hoopa.hoopa.R;
 import com.hoooopa.hoopa.hoopa.base.BaseFragment;
 import com.hoooopa.hoopa.hoopa.bean.cookbean.CookBase;
+import com.hoooopa.hoopa.hoopa.views.main.cook.detail.DetailActivity;
 import com.hoooopa.hoopa.hoopa.widget.GlideImageLoader;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
@@ -40,6 +42,8 @@ public class CookFragment extends BaseFragment implements ICookView {
     private List<String> bannerTitles = new ArrayList<>();
     private List<String> bannerId = new ArrayList<>();
 
+    private int start = 0 ;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View view = inflater.inflate(R.layout.fragment_cook,container,false);
@@ -68,54 +72,83 @@ public class CookFragment extends BaseFragment implements ICookView {
         cookBanner.setDelayTime(3500);
         cookBanner.setIndicatorGravity(BannerConfig.RIGHT);
 
-
     }
 
     private void initData(){
-        presenter.getBannerAndRcvData();
+        presenter.getBannerData();
+        presenter.getRcvData(start);
     }
 
     private void initLisenter(){
 
+        /**
+         * banner点击跳转到DetailActivity
+         */
         cookBanner.setOnBannerListener(new OnBannerListener() {
             @Override
             public void OnBannerClick(int position) {
-                Toast.makeText(getContext(),position+"",Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getActivity(), DetailActivity.class);
+                intent.putExtra("classid",bannerId.get(position));
+                startActivity(intent);
             }
         });
 
 
     }
 
-
-
     @Override
-    public void onQueryCookData_Start() {
-        //  presenter.getBannerAndRcvData();
+    public void onBannerData_Start() {
+        //做一些开始加载的动作
     }
 
+    @Override
+    public void onBannerData_Restart() {
+        //从新请求一边数据
+        presenter.getBannerData();
+    }
 
 
     /**
      * 对数据进行操作，给Banner和Rcv填充数据
      * @param bannerData banner的数据
-     * @param rcvData    rcv列表的数据
      */
     @Override
-    public void onQueryCookData_Success(List<CookBase> bannerData, List<CookBase> rcvData) {
+    public void onBannerData_Success(List<CookBase> bannerData) {
+        //得到轮播图图片的ID
         bannerId = getBannerId(bannerData);
+        //加载轮播图数据
         cookBanner.setImages(getBannerImageUrls(bannerData));
         cookBanner.setBannerTitles(getBannerTitles(bannerData));
+        //注意：别漏了.轮播图.start();
         cookBanner.start();
+    }
 
-
+    @Override
+    public void onBannerData_Failure(String data) {
 
     }
 
     @Override
-    public void onQueryCookData_Failure(String data) {
-        // presenter.getBannerAndRcvData();    //这个操作存疑！在数据少于16及请求出错的时候会重新请求数据
+    public void onRcvData_Start() {
+
     }
+
+    @Override
+    public void onRcvData_Restart() {
+
+    }
+
+    @Override
+    public void onRcvData_Success(List<CookBase> rcvData) {
+        //RecycleView和Expandablelayout的结合
+    }
+
+    @Override
+    public void onRcvData_Failure(String data) {
+
+    }
+
+    //以下数据操作应该到Presenter里去做！明天改
 
     /**
      * 得到Banner的图片地址
@@ -145,7 +178,7 @@ public class CookFragment extends BaseFragment implements ICookView {
 
 
     /**
-     *
+     * 获得Banner加载的id
      */
     private List<String> getBannerId(List<CookBase> bannerData){
         for (int i = 0 ; i < bannerData.size() ; i++){
@@ -153,12 +186,6 @@ public class CookFragment extends BaseFragment implements ICookView {
         }
         return bannerId;
     }
-
-
-
-
-
-
 
 
 

@@ -19,7 +19,7 @@ public abstract class BaseActivity<V,T extends BasePresenter<V>> extends AppComp
         mPresenter = createPresenter();
         //内存泄漏
         //关联View
-        mPresenter.attachView((V)this);
+        mPresenter.attachView( (V) this);
     }
     @Override
     protected void onDestroy() {

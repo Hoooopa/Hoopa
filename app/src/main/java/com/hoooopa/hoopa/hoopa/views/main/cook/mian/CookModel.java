@@ -43,7 +43,7 @@ public class CookModel {
 
                     @Override
                     public void onError(Throwable e) {
-                        callback.onCookDataByClassid_Failure("请求数据出错");
+                        callback.onCookDataByClassid_Failure(e.toString());
                     }
 
                     @Override

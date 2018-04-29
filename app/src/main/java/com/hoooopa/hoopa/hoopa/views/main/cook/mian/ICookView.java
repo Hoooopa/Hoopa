@@ -11,26 +11,29 @@ import java.util.List;
 public interface ICookView {
 
     /**
-     * 开始加载数据
-     *
-     * 注：在这里可以做一些数据没有加载出来之前的事
+     * 轮播图Banner的数据
      */
-    void onQueryCookData_Start();
+    void onBannerData_Start();
+
+    void onBannerData_Restart();
+
+    void onBannerData_Success(List<CookBase> bannerData);   //成功则把返回的图片数据插入进去
+
+    void onBannerData_Failure(String data);   //失败则显示没有数据的那个图片
 
 
     /**
-     * 数据请求成功
-     * @param bannerData banner的数据
-     * @param rcvData    rcv列表的数据
+     * 列表Rcv的数据
      */
-    void onQueryCookData_Success(List<CookBase> bannerData , List<CookBase> rcvData);   //成功则把返回的图片数据插入进去
+    void onRcvData_Start();
+
+    void onRcvData_Restart();
+
+    void onRcvData_Success(List<CookBase> rcvData);
+
+    void onRcvData_Failure(String data);
 
 
-    /**
-     * 数据请求失败
-     * @param data
-     */
-    void onQueryCookData_Failure(String data);   //失败则显示没有数据的那个图片
 
 
 }
