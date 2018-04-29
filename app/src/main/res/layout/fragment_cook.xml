@@ -2,18 +2,29 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/textColorThird"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tv1"
+    <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:text="1"/>
+        android:layout_height="200dp"
+        android:background="@color/transparent">
 
-    <TextView
-        android:id="@+id/tv2"
+        <com.youth.banner.Banner
+            android:id="@+id/fragment_cook_banner"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:image_scale_type="fit_xy"
+            app:indicator_margin="2dp"
+            app:scroll_time="1500" />
+
+    </android.support.design.widget.AppBarLayout>
+
+    <include layout="@layout/include_cook_choose"/>
+
+    <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        />
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>

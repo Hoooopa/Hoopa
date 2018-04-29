@@ -9,11 +9,12 @@ import android.widget.Toast;
 
 import com.hoooopa.hoopa.hoopa.R;
 import com.hoooopa.hoopa.hoopa.base.BaseFragment;
-import com.hoooopa.hoopa.hoopa.views.main.cook.CookFragment;
-import com.hoooopa.hoopa.hoopa.views.main.douban.DoubanFragment;
-import com.hoooopa.hoopa.hoopa.views.main.gank.GankFragment;
-import com.hoooopa.hoopa.hoopa.views.main.home.HomeFragment;
-import com.hoooopa.hoopa.hoopa.views.main.last.LastFragment;
+
+import com.hoooopa.hoopa.hoopa.views.main.cook.mian.CookFragment;
+import com.hoooopa.hoopa.hoopa.views.main.douban.main.DoubanFragment;
+import com.hoooopa.hoopa.hoopa.views.main.gank.main.GankFragment;
+import com.hoooopa.hoopa.hoopa.views.main.home.main.HomeFragment;
+import com.hoooopa.hoopa.hoopa.views.main.last.main.LastFragment;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabReselectListener;
 import com.roughike.bottombar.OnTabSelectListener;

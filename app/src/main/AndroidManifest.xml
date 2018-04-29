@@ -4,6 +4,9 @@
 
     <!--联网权限-->
     <uses-permission android:name="android.permission.INTERNET"/>
+    <!--读取file数据-->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
 
     <application
         android:name=".HoopaApplication"
@@ -23,6 +26,10 @@
 
         <activity android:name=".views.main.MainActivity" android:screenOrientation="portrait" android:exported="true"/>
         <activity android:name=".views.guide.GuideActivity" android:screenOrientation="portrait"/>
+        <!--Cookbook菜谱的Activity-->
+        <activity android:name=".views.main.cook.choose.ChooseActivity" android:screenOrientation="portrait" android:exported="true"/>
+        <activity android:name=".views.main.cook.detail.DetailActivity" android:screenOrientation="portrait" android:exported="true"/>
+        <activity android:name=".views.main.cook.save.SaveActivity" android:screenOrientation="portrait" android:exported="true"/>
 
     </application>
 

@@ -30,7 +30,7 @@ import me.relex.circleindicator.CircleIndicator;
  *
  */
 
-public class GuideActivity extends BaseActivity<IGuideView,GuidePresenter> implements IGuideView{
+public class GuideActivity extends BaseActivity< IGuideView , GuidePresenter> implements IGuideView{
 
     @BindView(R.id.activity_guide_bt)
     Button btLogin;

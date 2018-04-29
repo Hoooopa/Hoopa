@@ -5,6 +5,7 @@ import android.app.Application;
 import android.content.Context;
 import android.os.Bundle;
 
+
 /**
  * Created by Pray on 2018/4/25.
  * 一个程序有且仅有一个Application，通过Application能做很多事
