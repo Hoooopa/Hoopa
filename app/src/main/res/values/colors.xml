@@ -12,7 +12,8 @@
     <!--纯色系-->
     <color name="white">#FFFFFF</color>
 
-
+    <!--底部Bottombar上面的View-->
+    <color name="bottombarView">#10000000</color>
     <!--GuideActivity的Button的背景颜色-->
     <color name="guide_bt_text">#75DDFB</color>
     <!--透明色-->

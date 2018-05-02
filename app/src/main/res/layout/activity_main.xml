@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
+    android:orientation="vertical"
     >
 
     <android.support.v4.widget.NestedScrollView
         android:id="@+id/activity_main_srcoll"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_above="@id/v1"
+        >
 
         <com.hoooopa.hoopa.hoopa.widget.MyViewPager
             android:id="@+id/activity_main_vp"
@@ -19,16 +22,19 @@
     </android.support.v4.widget.NestedScrollView>
 
 
-
-
+    <View
+        android:id="@+id/v1"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/bottombarView"
+        android:layout_above="@id/activity_main_bottombar"
+        />
 
     <com.roughike.bottombar.BottomBar
         android:id="@+id/activity_main_bottombar"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_gravity="bottom"
-        app:bb_tabXmlResource="@xml/bottombar_main"
-        app:bb_showShadow="true"
-        app:bb_behavior="shy"/>
+        android:layout_alignParentBottom="true"
+        app:bb_tabXmlResource="@xml/bottombar_main" />
 
-</android.support.design.widget.CoordinatorLayout>
+</RelativeLayout>

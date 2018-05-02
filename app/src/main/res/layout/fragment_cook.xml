@@ -3,28 +3,46 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/textColorThird"
-    android:orientation="vertical">
+    android:background="#F0F0F0">
 
-    <android.support.design.widget.AppBarLayout
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:background="@color/transparent">
+        android:layout_height="match_parent">
 
-        <com.youth.banner.Banner
-            android:id="@+id/fragment_cook_banner"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:image_scale_type="fit_xy"
-            app:indicator_margin="2dp"
-            app:scroll_time="1500" />
+            android:orientation="vertical"
+            >
 
-    </android.support.design.widget.AppBarLayout>
+            <com.youth.banner.Banner
+                android:id="@+id/fragment_cook_banner"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                app:image_scale_type="fit_xy"
+                app:indicator_margin="2dp"
+                app:scroll_time="1500" />
 
-    <include layout="@layout/include_cook_choose"/>
 
-    <android.support.v7.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+            <include layout="@layout/include_cook_choose"
+                android:layout_height="50dp"
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                />
+
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/fragment_cook_rcv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:elevation="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                />
+
+
+        </LinearLayout>
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
 </LinearLayout>

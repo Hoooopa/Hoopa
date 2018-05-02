@@ -5,6 +5,8 @@ import android.app.Application;
 import android.content.Context;
 import android.os.Bundle;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
+
 
 /**
  * Created by Pray on 2018/4/25.
@@ -20,7 +22,7 @@ import android.os.Bundle;
  *      fragemnt_cookbook.xml
  *   layout内的控件:
  *      actvity_spalsh_iv
- *      item_cookbook_tv_1
+ *      item_cook_tv_1
  *   资源命名
  *      guide_bt_color
  *      guide_bt_text
@@ -34,11 +36,14 @@ public class HoopaApplication extends Application {
 
     private HoopaApplication app;
     private Activity mActivity;
+    private static Context mApplicationContext;
 
     @Override
     public void onCreate(){
         super.onCreate();
         app  = this;
+        mApplicationContext = this;
+        Fresco.initialize(this);
 
         activityLifecycleCallback();
 

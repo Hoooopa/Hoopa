@@ -2,6 +2,7 @@ package com.hoooopa.hoopa.hoopa.views.main.cook.mian;
 import com.hoooopa.hoopa.hoopa.bean.cookbean.cooklist.CookFromListBean;
 import com.hoooopa.hoopa.hoopa.constants.Constants;
 import com.hoooopa.hoopa.hoopa.http.HttpClient;
+import com.hoooopa.hoopa.hoopa.views.main.cook.mian.ICookCallback;
 
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;

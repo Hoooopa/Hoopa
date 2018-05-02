@@ -2,15 +2,18 @@ package com.hoooopa.hoopa.hoopa.views.main.cook.mian;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.hoooopa.hoopa.hoopa.R;
+import com.hoooopa.hoopa.hoopa.adapter.CookMainRcvAdapter;
 import com.hoooopa.hoopa.hoopa.base.BaseFragment;
 import com.hoooopa.hoopa.hoopa.bean.cookbean.CookBase;
+import com.hoooopa.hoopa.hoopa.widget.ScrollLinearLayoutManager;
 import com.hoooopa.hoopa.hoopa.views.main.cook.detail.DetailActivity;
 import com.hoooopa.hoopa.hoopa.widget.GlideImageLoader;
 import com.youth.banner.Banner;
@@ -31,18 +34,17 @@ import butterknife.Unbinder;
 
 public class CookFragment extends BaseFragment implements ICookView {
 
-    private Unbinder unbinder;
-
-    private CookPresenter presenter;
-
     @BindView(R.id.fragment_cook_banner)
     Banner cookBanner;
+    @BindView(R.id.fragment_cook_rcv)
+    RecyclerView cookRcv;
 
-    private List<String> bannerImageUrls = new ArrayList<>();
-    private List<String> bannerTitles = new ArrayList<>();
+    private Unbinder unbinder;
+    private CookPresenter presenter;
     private List<String> bannerId = new ArrayList<>();
+    private int rcvStart = 0 ;
 
-    private int start = 0 ;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
@@ -72,15 +74,21 @@ public class CookFragment extends BaseFragment implements ICookView {
         cookBanner.setDelayTime(3500);
         cookBanner.setIndicatorGravity(BannerConfig.RIGHT);
 
+        /**
+         * Rcv的操作
+         */
+        ScrollLinearLayoutManager scrollLinearLayoutManager = new ScrollLinearLayoutManager(getContext());
+        scrollLinearLayoutManager.setScrollEnabled(false);
+        cookRcv.setLayoutManager(scrollLinearLayoutManager);
+
     }
 
     private void initData(){
         presenter.getBannerData();
-        presenter.getRcvData(start);
+        presenter.getRcvData(rcvStart);
     }
 
     private void initLisenter(){
-
         /**
          * banner点击跳转到DetailActivity
          */
@@ -96,6 +104,9 @@ public class CookFragment extends BaseFragment implements ICookView {
 
     }
 
+
+
+
     @Override
     public void onBannerData_Start() {
         //做一些开始加载的动作
@@ -107,26 +118,26 @@ public class CookFragment extends BaseFragment implements ICookView {
         presenter.getBannerData();
     }
 
-
     /**
      * 对数据进行操作，给Banner和Rcv填充数据
      * @param bannerData banner的数据
      */
     @Override
-    public void onBannerData_Success(List<CookBase> bannerData) {
+    public void onBannerData_Success(List<CookBase> bannerData,List<String> bannerId, List<String> bannerUrl,List<String> bannerTitle) {
         //得到轮播图图片的ID
-        bannerId = getBannerId(bannerData);
+        this.bannerId = bannerId;
         //加载轮播图数据
-        cookBanner.setImages(getBannerImageUrls(bannerData));
-        cookBanner.setBannerTitles(getBannerTitles(bannerData));
-        //注意：别漏了.轮播图.start();
-        cookBanner.start();
+        cookBanner.setImages(bannerUrl);
+        cookBanner.setBannerTitles(bannerTitle);
+        cookBanner.start();//注意：别漏了.轮播图.start();
     }
 
     @Override
     public void onBannerData_Failure(String data) {
-
+        Toast.makeText(getContext(),data,Toast.LENGTH_SHORT).show();
     }
+
+
 
     @Override
     public void onRcvData_Start() {
@@ -135,59 +146,27 @@ public class CookFragment extends BaseFragment implements ICookView {
 
     @Override
     public void onRcvData_Restart() {
-
+        presenter.getRcvData(rcvStart);
     }
 
     @Override
     public void onRcvData_Success(List<CookBase> rcvData) {
-        //RecycleView和Expandablelayout的结合
+        CookMainRcvAdapter adapter = new CookMainRcvAdapter(getContext(),rcvData,cookRcv, new CookMainRcvAdapter.onCookRcvClickListener() {
+            @Override
+            public void onThumbClickListener(String url) {
+                Toast.makeText(getContext(),url,Toast.LENGTH_SHORT).show();
+            }
+        });
+        cookRcv.setAdapter(adapter);
+
+        adapter.notifyDataSetChanged();
+
     }
 
     @Override
     public void onRcvData_Failure(String data) {
-
+        Toast.makeText(getContext(),data,Toast.LENGTH_SHORT).show();
     }
-
-    //以下数据操作应该到Presenter里去做！明天改
-
-    /**
-     * 得到Banner的图片地址
-     *
-     * @param bannerData
-     * @return
-     */
-
-    private List getBannerImageUrls(List<CookBase> bannerData){
-        for (int i = 0 ; i < bannerData.size() ; i++ ){
-            bannerImageUrls.add(bannerData.get(i).getPic());
-        }
-        return bannerImageUrls;
-    }
-
-    /**
-     * 得到Bnnaer的图片标题
-     * @param bannerData
-     * @return
-     */
-    private List<String> getBannerTitles(List<CookBase> bannerData){
-        for (int i = 0 ; i < bannerData.size() ; i++ ){
-            bannerTitles.add(bannerData.get(i).getName());
-        }
-        return bannerTitles;
-    }
-
-
-    /**
-     * 获得Banner加载的id
-     */
-    private List<String> getBannerId(List<CookBase> bannerData){
-        for (int i = 0 ; i < bannerData.size() ; i++){
-            bannerId.add(bannerData.get(i).getId());
-        }
-        return bannerId;
-    }
-
-
 
 
 

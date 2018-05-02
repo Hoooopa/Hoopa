@@ -16,11 +16,6 @@ public class CookPresenter extends BasePresenter<ICookView> {
 
     private ICookView view;
 
-    private List<CookBase> bannerCookList = new ArrayList<>();
-
-    private List<CookBase> rcvCookList = new ArrayList<>();
-
-
     public CookPresenter(ICookView view){
         this.view = view;
     }
@@ -35,13 +30,20 @@ public class CookPresenter extends BasePresenter<ICookView> {
         new CookModel().getCookDataByClassid(getRandomClassid() , getRandomStart() ,6 , new ICookCallback.CookDataByClassidCallback() {
             @Override
             public void onCookDataByClassid_Success(CookFromListBean cookFromListBean) {
+                List<CookBase> bannerCookList = new ArrayList<>();
+                List<String> bannerId = new ArrayList<>();
+                List<String> bannerUrl = new ArrayList<>();
+                List<String> bannerTitle = new ArrayList<>();
                 try {
                     for (int i = 0 ; i < 6 ; i++ ) {
                         bannerCookList.add(cookFromListBean.getResult().getResult().getList().get(i));
+                        bannerId.add(cookFromListBean.getResult().getResult().getList().get(i).getId());
+                        bannerUrl.add(cookFromListBean.getResult().getResult().getList().get(i).getPic());
+                        bannerTitle.add(cookFromListBean.getResult().getResult().getList().get(i).getName());
                     }
-                    view.onBannerData_Success(bannerCookList);
+                    view.onBannerData_Success(bannerCookList,bannerId,bannerUrl,bannerTitle);
                 } catch (Exception e){
-                    view.onBannerData_Restart();
+                    view.onRcvData_Failure("出现了了不得的错误！");
                 }
             }
 
@@ -57,7 +59,6 @@ public class CookPresenter extends BasePresenter<ICookView> {
                 }
             }
         });
-
     }
 
 
@@ -65,12 +66,11 @@ public class CookPresenter extends BasePresenter<ICookView> {
      * 获取列表Rcv的数据
      */
     public void getRcvData(int start){
-
         view.onRcvData_Start();
-
         new CookModel().getCookDataByClassid(getRandomClassid(), start, 10, new ICookCallback.CookDataByClassidCallback() {
             @Override
             public void onCookDataByClassid_Success(CookFromListBean data) {
+                List<CookBase> rcvCookList = new ArrayList<>();
                 try {
                     for (int i = 0 ; i < 10 ; i++ ) {
                         rcvCookList.add(data.getResult().getResult().getList().get(i));
@@ -86,7 +86,6 @@ public class CookPresenter extends BasePresenter<ICookView> {
                 view.onRcvData_Failure(data);
             }
         });
-
     }
 
     /**

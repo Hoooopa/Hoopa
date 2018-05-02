@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="8dp"
+    android:layout_marginBottom="10dp"
+    android:background="@color/white"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:id="@+id/item_cook_main_rl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/item_cook_main_iv_thumbnail"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_margin="5dp"
+                />
+            <TextView
+                android:id="@+id/item_cook_main_tv_title"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_toEndOf="@id/item_cook_main_iv_thumbnail"
+                android:layout_marginTop="5dp"
+                android:text="标题"
+                />
+
+            <TextView
+                android:id="@+id/item_cook_main_tv_content_1"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_toEndOf="@id/item_cook_main_iv_thumbnail"
+                android:layout_below="@id/item_cook_main_tv_title"
+                android:text="内容"
+                />
+        </RelativeLayout>
+
+
+
+
+
+
+        <net.cachapa.expandablelayout.ExpandableLayout
+            android:id="@+id/item_cook_main_expandable_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingRight="20dp"
+            android:paddingLeft="20dp"
+            app:el_expanded="false">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="材料"
+                    />
+                <TextView
+                    android:id="@+id/item_cook_main_tv_meterial"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="介绍"
+                    />
+                <TextView
+                    android:id="@+id/item_cook_main_tv_content_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <Button
+                    android:id="@+id/item_cook_main_bt_detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="详细"
+                    />
+                <Button
+                    android:id="@+id/item_cook_main_bt_save"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="保存"
+                    />
+
+            </LinearLayout>
+        </net.cachapa.expandablelayout.ExpandableLayout>
+
+    </LinearLayout>
+</android.support.v7.widget.CardView>
+

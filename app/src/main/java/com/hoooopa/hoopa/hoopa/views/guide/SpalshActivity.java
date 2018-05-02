@@ -2,6 +2,7 @@ package com.hoooopa.hoopa.hoopa.views.guide;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -30,6 +31,8 @@ public class SpalshActivity extends AppCompatActivity {
     ImageView iv;
 
     private int durationKeepTime = 1500 ;             //动画持续时间
+
+    private boolean isFirst ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,9 +76,11 @@ public class SpalshActivity extends AppCompatActivity {
         scaleAnimation.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
-                //根据常量标志来判断是否是第一次安装APP（导致调试的时候每次启动都会先进入GuideActivity.java）
-                if(Constants.FIRST_INSTALL_APP){
-                    Constants.FIRST_INSTALL_APP = false;
+                //根据SharedPreferences来保存是否是第一次安装
+                SharedPreferences firstInstall = getSharedPreferences(Constants.SHARED_PEREFERENCE_FIRST_INSTALL_APP,0);
+                isFirst = firstInstall.getBoolean(Constants.FIRST_INSTALL,true);
+                if(isFirst){
+                    firstInstall.edit().putBoolean(Constants.FIRST_INSTALL,false).apply();
                     mHandler.sendEmptyMessageDelayed(0,3000);
                 }else {
                     mHandler.sendEmptyMessageDelayed(1,3000);
