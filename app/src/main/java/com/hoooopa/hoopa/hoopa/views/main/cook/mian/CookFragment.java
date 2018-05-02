@@ -35,9 +35,11 @@ import butterknife.Unbinder;
 public class CookFragment extends BaseFragment implements ICookView {
 
     @BindView(R.id.fragment_cook_banner)
-    Banner cookBanner;
+    Banner bannerCook;
     @BindView(R.id.fragment_cook_rcv)
-    RecyclerView cookRcv;
+    RecyclerView rcvCook;
+    @BindView(R.id.fragment_cook_change)
+    Button btChange;
 
     private Unbinder unbinder;
     private CookPresenter presenter;
@@ -67,19 +69,19 @@ public class CookFragment extends BaseFragment implements ICookView {
          * banner的一系列操作
          * 还没加入数据
          */
-        cookBanner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE_INSIDE);
-        cookBanner.setImageLoader(new GlideImageLoader());
-        cookBanner.setBannerAnimation(Transformer.Default);
-        cookBanner.isAutoPlay(true);
-        cookBanner.setDelayTime(3500);
-        cookBanner.setIndicatorGravity(BannerConfig.RIGHT);
+        bannerCook.setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE_INSIDE);
+        bannerCook.setImageLoader(new GlideImageLoader());
+        bannerCook.setBannerAnimation(Transformer.Default);
+        bannerCook.isAutoPlay(true);
+        bannerCook.setDelayTime(3500);
+        bannerCook.setIndicatorGravity(BannerConfig.RIGHT);
 
         /**
          * Rcv的操作
          */
         ScrollLinearLayoutManager scrollLinearLayoutManager = new ScrollLinearLayoutManager(getContext());
         scrollLinearLayoutManager.setScrollEnabled(false);
-        cookRcv.setLayoutManager(scrollLinearLayoutManager);
+        rcvCook.setLayoutManager(scrollLinearLayoutManager);
 
     }
 
@@ -92,7 +94,7 @@ public class CookFragment extends BaseFragment implements ICookView {
         /**
          * banner点击跳转到DetailActivity
          */
-        cookBanner.setOnBannerListener(new OnBannerListener() {
+        bannerCook.setOnBannerListener(new OnBannerListener() {
             @Override
             public void OnBannerClick(int position) {
                 Intent intent = new Intent(getActivity(), DetailActivity.class);
@@ -101,6 +103,12 @@ public class CookFragment extends BaseFragment implements ICookView {
             }
         });
 
+        btChange.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                presenter.getRcvData(rcvStart);
+            }
+        });
 
     }
 
@@ -127,9 +135,9 @@ public class CookFragment extends BaseFragment implements ICookView {
         //得到轮播图图片的ID
         this.bannerId = bannerId;
         //加载轮播图数据
-        cookBanner.setImages(bannerUrl);
-        cookBanner.setBannerTitles(bannerTitle);
-        cookBanner.start();//注意：别漏了.轮播图.start();
+        bannerCook.setImages(bannerUrl);
+        bannerCook.setBannerTitles(bannerTitle);
+        bannerCook.start();//注意：别漏了.轮播图.start();
     }
 
     @Override
@@ -151,13 +159,13 @@ public class CookFragment extends BaseFragment implements ICookView {
 
     @Override
     public void onRcvData_Success(List<CookBase> rcvData) {
-        CookMainRcvAdapter adapter = new CookMainRcvAdapter(getContext(),rcvData,cookRcv, new CookMainRcvAdapter.onCookRcvClickListener() {
+        CookMainRcvAdapter adapter = new CookMainRcvAdapter(getContext(),rcvData,rcvCook, new CookMainRcvAdapter.onCookRcvClickListener() {
             @Override
             public void onThumbClickListener(String url) {
                 Toast.makeText(getContext(),url,Toast.LENGTH_SHORT).show();
             }
         });
-        cookRcv.setAdapter(adapter);
+        rcvCook.setAdapter(adapter);
 
         adapter.notifyDataSetChanged();
 

@@ -3,7 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Hoopa.iml" filepath="$PROJECT_DIR$/Hoopa.iml" />
+      <module fileurl="file://D:\Projects\Hoopa\Hoopa.iml" filepath="D:\Projects\Hoopa\Hoopa.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://D:\Projects\Hoopa\app\app.iml" filepath="D:\Projects\Hoopa\app\app.iml" />
     </modules>
   </component>
 </project>
