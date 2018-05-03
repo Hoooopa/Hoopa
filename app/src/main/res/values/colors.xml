@@ -18,4 +18,6 @@
     <color name="guide_bt_text">#75DDFB</color>
     <!--透明色-->
     <color name="transparent">#00000000</color>
+    <!--云阅灰色背景-->
+    <color name="content_bg_color">#F1F3F4</color>
 </resources>

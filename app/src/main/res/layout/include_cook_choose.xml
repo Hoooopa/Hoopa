@@ -2,13 +2,50 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/content_bg_color"
+    android:orientation="vertical">
+
+    <com.youth.banner.Banner
+        android:id="@+id/fragment_cook_banner"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        app:image_scale_type="fit_xy"
+        app:indicator_margin="2dp"
+        app:scroll_time="1500" />
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="50dp"
         android:gravity="center"
         android:text="include"
+        android:background="@color/white"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         />
+
+    <RelativeLayout
+        android:id="@+id/fragment_cook_mid_ll"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="随机推荐"
+            android:layout_marginStart="20dp"
+            android:layout_centerVertical="true"
+            />
+        <ImageButton
+            android:id="@+id/fragment_cook_change"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="20dp"
+            android:src="@drawable/ic_cook_icon_unselected"
+            />
+
+    </RelativeLayout>
 
 </LinearLayout>

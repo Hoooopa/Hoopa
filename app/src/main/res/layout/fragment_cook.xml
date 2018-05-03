@@ -1,71 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fitsSystemWindows="true"
     android:background="#F0F0F0">
-
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/fragment_cook_refresh"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
-        <LinearLayout
+        <android.support.v4.widget.NestedScrollView
+            android:id="@+id/fragment_cook_scroll"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            >
+            android:layout_height="match_parent">
 
-            <com.youth.banner.Banner
-                android:id="@+id/fragment_cook_banner"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                app:image_scale_type="fit_xy"
-                app:indicator_margin="2dp"
-                app:scroll_time="1500" />
-
-
-            <include layout="@layout/include_cook_choose"
-                android:layout_height="50dp"
-                android:layout_width="match_parent"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                />
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="20dp"
-                android:orientation="horizontal"
-                android:layout_marginBottom="5dp">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="10"
-                    android:text="随机推荐"
-                    android:paddingStart="10dp"
-                    />
-                <Button
-                    android:id="@+id/fragment_cook_change"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="3"
-                    android:text="换一批"
-                    android:gravity="center"
-                    />
+                <include layout="@layout/include_cook_choose"
+                    android:id="@+id/include_cook_choose_id"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_marginBottom="5dp"/>
 
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/fragment_cook_rcv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
             </LinearLayout>
-
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/fragment_cook_rcv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:elevation="10dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                />
-
-
-        </LinearLayout>
+        </android.support.v4.widget.NestedScrollView>
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
-</LinearLayout>
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/fragment_cook_toobar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+</RelativeLayout>

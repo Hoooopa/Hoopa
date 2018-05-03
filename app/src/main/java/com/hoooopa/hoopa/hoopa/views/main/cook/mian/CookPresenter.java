@@ -5,6 +5,7 @@ import com.hoooopa.hoopa.hoopa.bean.cookbean.CookBase;
 import com.hoooopa.hoopa.hoopa.bean.cookbean.cooklist.CookFromListBean;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -20,6 +21,8 @@ public class CookPresenter extends BasePresenter<ICookView> {
         this.view = view;
     }
 
+    private int[] uselessId =new int[]{1,113,144,213,233,269,301,390,453,524,561};
+
     /**
      * 获取轮播图Bnnaer的数据
      */
@@ -30,33 +33,21 @@ public class CookPresenter extends BasePresenter<ICookView> {
         new CookModel().getCookDataByClassid(getRandomClassid() , getRandomStart() ,6 , new ICookCallback.CookDataByClassidCallback() {
             @Override
             public void onCookDataByClassid_Success(CookFromListBean cookFromListBean) {
-                List<CookBase> bannerCookList = new ArrayList<>();
+                List<CookBase> bannerCookList = cookFromListBean.getResult().getResult().getList();
                 List<String> bannerId = new ArrayList<>();
                 List<String> bannerUrl = new ArrayList<>();
                 List<String> bannerTitle = new ArrayList<>();
-                try {
-                    for (int i = 0 ; i < 6 ; i++ ) {
-                        bannerCookList.add(cookFromListBean.getResult().getResult().getList().get(i));
-                        bannerId.add(cookFromListBean.getResult().getResult().getList().get(i).getId());
-                        bannerUrl.add(cookFromListBean.getResult().getResult().getList().get(i).getPic());
-                        bannerTitle.add(cookFromListBean.getResult().getResult().getList().get(i).getName());
-                    }
-                    view.onBannerData_Success(bannerCookList,bannerId,bannerUrl,bannerTitle);
-                } catch (Exception e){
-                    view.onRcvData_Failure("出现了了不得的错误！");
+                for (int i = 0 ; i < bannerCookList.size() ; i++ ) {
+                    bannerId.add(bannerCookList.get(i).getId());
+                    bannerUrl.add(bannerCookList.get(i).getPic());
+                    bannerTitle.add(bannerCookList.get(i).getName());
                 }
+                view.onBannerData_Success(bannerCookList,bannerId,bannerUrl,bannerTitle);
             }
 
             @Override
             public void onCookDataByClassid_Failure(String data) {
-                /**
-                 * 用错误代码来判断是否是返回的数据Gson解析错误
-                 */
-                if (data.contains("com.google.gson")){
-                    view.onBannerData_Restart();
-                }else {
-                    view.onBannerData_Failure(data);
-                }
+                view.onBannerData_Failure(data);
             }
         });
     }
@@ -70,15 +61,8 @@ public class CookPresenter extends BasePresenter<ICookView> {
         new CookModel().getCookDataByClassid(getRandomClassid(), start, 10, new ICookCallback.CookDataByClassidCallback() {
             @Override
             public void onCookDataByClassid_Success(CookFromListBean data) {
-                List<CookBase> rcvCookList = new ArrayList<>();
-                try {
-                    for (int i = 0 ; i < 10 ; i++ ) {
-                        rcvCookList.add(data.getResult().getResult().getList().get(i));
-                    }
-                    view.onRcvData_Success(rcvCookList);
-                }catch (Exception e){
-                    view.onRcvData_Restart();
-                }
+                List<CookBase> rcvCookList = data.getResult().getResult().getList();
+                view.onRcvData_Success(rcvCookList);
             }
 
             @Override
@@ -94,7 +78,11 @@ public class CookPresenter extends BasePresenter<ICookView> {
      * @return classid
      */
     private int getRandomClassid(){
-        return new Random().nextInt(624) + 2 ;
+        int i;
+        do { //do-while循环用于保证id不是那几个特殊的id
+            i = new Random().nextInt(624) + 2;
+        }while (Arrays.asList(uselessId).contains(i));
+        return i;
     }
 
     /**

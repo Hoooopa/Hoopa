@@ -15,6 +15,7 @@ import com.hoooopa.hoopa.hoopa.views.main.douban.main.DoubanFragment;
 import com.hoooopa.hoopa.hoopa.views.main.gank.main.GankFragment;
 import com.hoooopa.hoopa.hoopa.views.main.home.main.HomeFragment;
 import com.hoooopa.hoopa.hoopa.views.main.last.main.LastFragment;
+import com.jaeger.library.StatusBarUtil;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabReselectListener;
 import com.roughike.bottombar.OnTabSelectListener;
@@ -47,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        StatusBarUtil.setTranslucentForImageViewInFragment(MainActivity.this,0,null);
         ButterKnife.bind(this);
 
         initContentFragment();

@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.hoooopa.hoopa.hoopa.R;
@@ -39,7 +40,7 @@ public class CookFragment extends BaseFragment implements ICookView {
     @BindView(R.id.fragment_cook_rcv)
     RecyclerView rcvCook;
     @BindView(R.id.fragment_cook_change)
-    Button btChange;
+    ImageButton btChange;
 
     private Unbinder unbinder;
     private CookPresenter presenter;
@@ -120,12 +121,6 @@ public class CookFragment extends BaseFragment implements ICookView {
         //做一些开始加载的动作
     }
 
-    @Override
-    public void onBannerData_Restart() {
-        //从新请求一边数据
-        presenter.getBannerData();
-    }
-
     /**
      * 对数据进行操作，给Banner和Rcv填充数据
      * @param bannerData banner的数据
@@ -145,16 +140,9 @@ public class CookFragment extends BaseFragment implements ICookView {
         Toast.makeText(getContext(),data,Toast.LENGTH_SHORT).show();
     }
 
-
-
     @Override
     public void onRcvData_Start() {
 
-    }
-
-    @Override
-    public void onRcvData_Restart() {
-        presenter.getRcvData(rcvStart);
     }
 
     @Override
@@ -175,7 +163,6 @@ public class CookFragment extends BaseFragment implements ICookView {
     public void onRcvData_Failure(String data) {
         Toast.makeText(getContext(),data,Toast.LENGTH_SHORT).show();
     }
-
 
 
     /**

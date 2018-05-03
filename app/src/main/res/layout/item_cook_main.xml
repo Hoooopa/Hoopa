@@ -41,11 +41,6 @@
                 />
         </RelativeLayout>
 
-
-
-
-
-
         <net.cachapa.expandablelayout.ExpandableLayout
             android:id="@+id/item_cook_main_expandable_layout"
             android:layout_width="match_parent"
