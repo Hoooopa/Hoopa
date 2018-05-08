@@ -7,9 +7,10 @@
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
         android:id="@+id/fragment_cook_refresh"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true">
 
-        <android.support.v4.widget.NestedScrollView
+        <com.hoooopa.hoopa.hoopa.widget.TranslucentNestedScrollView
             android:id="@+id/fragment_cook_scroll"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -28,15 +29,35 @@
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/fragment_cook_rcv"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     />
             </LinearLayout>
-        </android.support.v4.widget.NestedScrollView>
+        </com.hoooopa.hoopa.hoopa.widget.TranslucentNestedScrollView>
+
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/fragment_cook_toobar"
         android:layout_width="match_parent"
-        android:layout_height="50dp" />
+        android:layout_height="56dp"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/fragment_cook_key"
+                android:layout_width="0dp"
+                android:layout_weight="10"
+                android:layout_height="match_parent"
+                />
+            <ImageButton
+                android:id="@+id/fragment_cook_search"
+                android:layout_width="50dp"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+    </android.support.v7.widget.Toolbar>
 
 </RelativeLayout>

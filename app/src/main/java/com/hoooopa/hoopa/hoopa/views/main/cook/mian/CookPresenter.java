@@ -47,7 +47,11 @@ public class CookPresenter extends BasePresenter<ICookView> {
 
             @Override
             public void onCookDataByClassid_Failure(String data) {
-                view.onBannerData_Failure(data);
+                if (data.contains("com.google.gson")){
+                    view.onBannerData_Restart();
+                }else {
+                    view.onBannerData_Failure(data);
+                }
             }
         });
     }
@@ -67,7 +71,11 @@ public class CookPresenter extends BasePresenter<ICookView> {
 
             @Override
             public void onCookDataByClassid_Failure(String data) {
-                view.onRcvData_Failure(data);
+                if (data.contains("com.google.gson")){
+                    view.onRcvData_Restart();
+                }else {
+                    view.onRcvData_Failure(data);
+                }
             }
         });
     }
@@ -80,7 +88,7 @@ public class CookPresenter extends BasePresenter<ICookView> {
     private int getRandomClassid(){
         int i;
         do { //do-while循环用于保证id不是那几个特殊的id
-            i = new Random().nextInt(624) + 2;
+            i = new Random().nextInt(623) + 2;
         }while (Arrays.asList(uselessId).contains(i));
         return i;
     }

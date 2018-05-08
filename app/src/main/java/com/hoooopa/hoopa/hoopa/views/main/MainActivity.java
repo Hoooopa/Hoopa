@@ -1,5 +1,6 @@
 package com.hoooopa.hoopa.hoopa.views.main;
 
+import android.graphics.Color;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -48,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        StatusBarUtil.setTranslucentForImageViewInFragment(MainActivity.this,0,null);
+     //   StatusBarUtil.setColor(MainActivity.this, Color.argb(125,0,188,212));
         ButterKnife.bind(this);
 
         initContentFragment();

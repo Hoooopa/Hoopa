@@ -26,7 +26,7 @@ public class CookModel {
             .baseUrl(Constants.JD_CLOUD_COOK_BASE_URL)
             .build();
 
-    public void getCookDataByClassid(int classid, int start,int num,final ICookCallback.CookDataByClassidCallback callback){
+    public void getCookDataByClassid(final int classid, int start, int num, final ICookCallback.CookDataByClassidCallback callback){
         retrofit.create(HttpClient.class)
                 .getCookDataByClassid(classid, start , num ,Constants.JD_CLOUD_COOK_APPKEY)
                 .subscribeOn(Schedulers.io())

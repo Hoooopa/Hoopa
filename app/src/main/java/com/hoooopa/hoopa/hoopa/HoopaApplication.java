@@ -41,6 +41,7 @@ public class HoopaApplication extends Application {
     @Override
     public void onCreate(){
         super.onCreate();
+
         app  = this;
         mApplicationContext = this;
         Fresco.initialize(this);
@@ -48,6 +49,7 @@ public class HoopaApplication extends Application {
         activityLifecycleCallback();
 
     }
+
 
     /**
      * 设置Activity的生命周期监听

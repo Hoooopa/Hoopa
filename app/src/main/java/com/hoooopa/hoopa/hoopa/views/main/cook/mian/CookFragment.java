@@ -1,7 +1,10 @@
 package com.hoooopa.hoopa.hoopa.views.main.cook.mian;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,14 +12,23 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
+import android.support.v7.widget.Toolbar;
 
 import com.hoooopa.hoopa.hoopa.R;
 import com.hoooopa.hoopa.hoopa.adapter.CookMainRcvAdapter;
 import com.hoooopa.hoopa.hoopa.base.BaseFragment;
 import com.hoooopa.hoopa.hoopa.bean.cookbean.CookBase;
+
 import com.hoooopa.hoopa.hoopa.widget.ScrollLinearLayoutManager;
 import com.hoooopa.hoopa.hoopa.views.main.cook.detail.DetailActivity;
 import com.hoooopa.hoopa.hoopa.widget.GlideImageLoader;
+import com.hoooopa.hoopa.hoopa.widget.TranslucentNestedScrollView;
+
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.header.ClassicsHeader;
+
+import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
@@ -41,13 +53,23 @@ public class CookFragment extends BaseFragment implements ICookView {
     RecyclerView rcvCook;
     @BindView(R.id.fragment_cook_change)
     ImageButton btChange;
+    @BindView(R.id.fragment_cook_refresh)
+    SmartRefreshLayout refreshCook;
+    @BindView(R.id.fragment_cook_toobar)
+    Toolbar toolbarCook;
+    @BindView(R.id.fragment_cook_scroll)
+    TranslucentNestedScrollView scrollCook;
 
     private Unbinder unbinder;
     private CookPresenter presenter;
     private List<String> bannerId = new ArrayList<>();
     private int rcvStart = 0 ;
 
+    private CookMainRcvAdapter adapter;
+    private List<CookBase> rcvDataBase = new ArrayList<>();
 
+    private float headerHeight;//顶部高度
+    private float minHeaderHeight;//顶部最低高度，即Bar的高度
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
@@ -84,11 +106,24 @@ public class CookFragment extends BaseFragment implements ICookView {
         scrollLinearLayoutManager.setScrollEnabled(false);
         rcvCook.setLayoutManager(scrollLinearLayoutManager);
 
+        /**
+         * SmartRefresh的操作
+         */
+        refreshCook.setRefreshHeader(new ClassicsHeader(getContext()));
+
+        /**
+         * Toolbar的操作 和ScrollView的操作
+         */
+        toolbarCook.setBackgroundColor(Color.argb(0, 255, 255, 255));
+
     }
 
     private void initData(){
         presenter.getBannerData();
         presenter.getRcvData(rcvStart);
+
+        headerHeight = getResources().getDimension(R.dimen.dimen_banner);
+        minHeaderHeight = getResources().getDimension(R.dimen.abc_action_bar_default_height_material);
     }
 
     private void initLisenter(){
@@ -104,12 +139,35 @@ public class CookFragment extends BaseFragment implements ICookView {
             }
         });
 
-        btChange.setOnClickListener(new View.OnClickListener() {
+        refreshCook.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
             @Override
-            public void onClick(View view) {
+            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+                presenter.getBannerData();
+            }
+
+            @Override
+            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
                 presenter.getRcvData(rcvStart);
             }
         });
+
+        final boolean a = true;
+        scrollCook.setOnScrollChangedListener(new TranslucentNestedScrollView.OnScrollChangedListener() {
+            @Override
+            public void onScrollChanged(NestedScrollView who, int l, int t, int oldl, int oldt) {
+
+                //Y轴偏移量
+                float scrollY = who.getScrollY();
+
+                //变化率
+                float headerBarOffsetY = headerHeight - minHeaderHeight;//Toolbar与header高度的差值
+                float offset = 1 - Math.max((headerBarOffsetY - scrollY) / headerBarOffsetY, 0f);
+
+                //Toolbar背景色透明度
+                toolbarCook.setBackgroundColor(Color.argb((int) (offset * 255), 196,199,208));
+            }
+        });
+
 
     }
 
@@ -119,6 +177,11 @@ public class CookFragment extends BaseFragment implements ICookView {
     @Override
     public void onBannerData_Start() {
         //做一些开始加载的动作
+    }
+
+    @Override
+    public void onBannerData_Restart() {
+        presenter.getBannerData();
     }
 
     /**
@@ -133,11 +196,12 @@ public class CookFragment extends BaseFragment implements ICookView {
         bannerCook.setImages(bannerUrl);
         bannerCook.setBannerTitles(bannerTitle);
         bannerCook.start();//注意：别漏了.轮播图.start();
+        refreshCook.finishRefresh();
     }
 
     @Override
     public void onBannerData_Failure(String data) {
-        Toast.makeText(getContext(),data,Toast.LENGTH_SHORT).show();
+        refreshCook.finishRefresh();
     }
 
     @Override
@@ -146,22 +210,31 @@ public class CookFragment extends BaseFragment implements ICookView {
     }
 
     @Override
+    public void onRcvData_Restart() {
+        presenter.getRcvData(rcvStart);
+    }
+
+    @Override
     public void onRcvData_Success(List<CookBase> rcvData) {
-        CookMainRcvAdapter adapter = new CookMainRcvAdapter(getContext(),rcvData,rcvCook, new CookMainRcvAdapter.onCookRcvClickListener() {
-            @Override
-            public void onThumbClickListener(String url) {
-                Toast.makeText(getContext(),url,Toast.LENGTH_SHORT).show();
-            }
-        });
-        rcvCook.setAdapter(adapter);
-
+        if (adapter == null){
+            rcvDataBase = rcvData;
+            adapter = new CookMainRcvAdapter(getContext(),rcvDataBase,rcvCook, new CookMainRcvAdapter.onCookRcvClickListener() {
+                @Override
+                public void onThumbClickListener(String url) {
+                    Toast.makeText(getContext(),url,Toast.LENGTH_SHORT).show();
+                }
+            });
+            rcvCook.setAdapter(adapter);
+        }else {
+            rcvDataBase.addAll(rcvData);
+        }
         adapter.notifyDataSetChanged();
-
+        refreshCook.finishLoadMore();
     }
 
     @Override
     public void onRcvData_Failure(String data) {
-        Toast.makeText(getContext(),data,Toast.LENGTH_SHORT).show();
+        refreshCook.finishLoadMore();
     }
 
 
