@@ -107,6 +107,7 @@ public class CookFragment extends BaseFragment implements ICookView {
         bannerCook.isAutoPlay(true);
         bannerCook.setDelayTime(3500);
         bannerCook.setIndicatorGravity(BannerConfig.RIGHT);
+        bannerCook.setBackgroundResource(R.drawable.douban_banner_default);
 
         /**
          * Rcv的操作

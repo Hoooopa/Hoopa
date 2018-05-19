@@ -1,12 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#fafafa">
 
-    <TextView
+    <com.youth.banner.Banner
+        android:id="@+id/fragment_douban_banner"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="rexiufu"
-        android:gravity="center"/>
+        android:layout_height="200dp"
+        app:image_scale_type="fit_xy"
+        />
 
-</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="180dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginEnd="60dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="match_parent" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:layout_marginRight="20dp"
+            android:gravity="center_vertical"
+            android:hint="搜索电影"
+            android:textSize="14sp"
+            />
+
+    </LinearLayout>
+
+    <!--豆瓣Top250，北美票房榜等-->
+    <LinearLayout
+        android:id="@+id/fragment_douban_choose_bt"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="200dp">
+
+    </LinearLayout>
+
+    <!--即将上映-->
+    <RelativeLayout
+        android:id="@+id/fragment_douban_coming"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_below="@id/fragment_douban_choose_bt">
+
+        <View
+            android:layout_width="3dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="7dp"
+            android:layout_marginBottom="7dp"
+            android:layout_marginLeft="7dp"
+            android:background="@color/textColorThird" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="即将上映"
+            android:layout_marginLeft="15dp"
+            android:textColor="#000"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="查看更多"
+            android:gravity="center"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:textSize="12sp"
+            />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/fragment_douban_ll_coming"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fragment_douban_coming">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/fragment_douban_rcv_coming"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/fragment_douban_rl_save"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_below="@id/fragment_douban_ll_coming">
+
+        <View
+            android:layout_width="3dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="7dp"
+            android:layout_marginBottom="7dp"
+            android:layout_marginLeft="7dp"
+            android:background="@color/textColorThird" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="收藏"
+            android:layout_marginLeft="15dp"
+            android:textColor="#000"
+            />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/fragment_douban_ll_save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fragment_douban_rl_save">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/fragment_douban_rcv_save"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+</RelativeLayout>
