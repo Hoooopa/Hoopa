@@ -9,8 +9,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 import android.support.v7.widget.Toolbar;
 
@@ -19,6 +19,7 @@ import com.hoooopa.hoopa.hoopa.adapter.CookMainRcvAdapter;
 import com.hoooopa.hoopa.hoopa.base.BaseFragment;
 import com.hoooopa.hoopa.hoopa.bean.cookbean.CookBase;
 
+import com.hoooopa.hoopa.hoopa.widget.ClearEditText;
 import com.hoooopa.hoopa.hoopa.widget.ScrollLinearLayoutManager;
 import com.hoooopa.hoopa.hoopa.views.main.cook.detail.DetailActivity;
 import com.hoooopa.hoopa.hoopa.widget.GlideImageLoader;
@@ -51,14 +52,22 @@ public class CookFragment extends BaseFragment implements ICookView {
     Banner bannerCook;
     @BindView(R.id.fragment_cook_rcv)
     RecyclerView rcvCook;
-    @BindView(R.id.fragment_cook_change)
-    ImageButton btChange;
     @BindView(R.id.fragment_cook_refresh)
     SmartRefreshLayout refreshCook;
     @BindView(R.id.fragment_cook_toobar)
     Toolbar toolbarCook;
     @BindView(R.id.fragment_cook_scroll)
     TranslucentNestedScrollView scrollCook;
+    @BindView(R.id.fragment_cook_iv_save)
+    ImageView ivSave;
+    @BindView(R.id.fragment_cook_ll_search)
+    LinearLayout llSearch;
+    @BindView(R.id.fragment_cook_et_key)
+    ClearEditText etKey;
+    @BindView(R.id.fragment_cook_iv_search)
+    ImageView ivSearch;
+
+
 
     private Unbinder unbinder;
     private CookPresenter presenter;
@@ -151,7 +160,9 @@ public class CookFragment extends BaseFragment implements ICookView {
             }
         });
 
-        final boolean a = true;
+        /**
+         * 在这里操作顶部的搜索的颜色之类的操作
+         */
         scrollCook.setOnScrollChangedListener(new TranslucentNestedScrollView.OnScrollChangedListener() {
             @Override
             public void onScrollChanged(NestedScrollView who, int l, int t, int oldl, int oldt) {
@@ -164,10 +175,20 @@ public class CookFragment extends BaseFragment implements ICookView {
                 float offset = 1 - Math.max((headerBarOffsetY - scrollY) / headerBarOffsetY, 0f);
 
                 //Toolbar背景色透明度
-                toolbarCook.setBackgroundColor(Color.argb((int) (offset * 255), 196,199,208));
+                toolbarCook.setBackgroundColor(Color.argb((int) (offset * 255), 255,255,255));
+
+                if (offset > 0.50){
+                    llSearch.setBackground(getActivity().getDrawable(R.drawable.ll_cook_search_bg_grey));
+                    etKey.setHintTextColor(Color.WHITE);
+                    ivSearch.setImageResource(R.drawable.ic_cook_search_white);
+                }else {
+                    llSearch.setBackground(getActivity().getDrawable(R.drawable.ll_cook_search_bg_white));
+                    etKey.setHintTextColor(Color.GRAY);
+                    ivSearch.setImageResource(R.drawable.ic_cook_search_grey);
+                }
+
             }
         });
-
 
     }
 
@@ -236,6 +257,8 @@ public class CookFragment extends BaseFragment implements ICookView {
     public void onRcvData_Failure(String data) {
         refreshCook.finishLoadMore();
     }
+
+
 
 
     /**

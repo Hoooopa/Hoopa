@@ -2,7 +2,7 @@
 <android.support.v7.widget.CardView android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:cardCornerRadius="8dp"
-    android:layout_marginBottom="10dp"
+    android:layout_marginBottom="5dp"
     android:background="@color/white"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
@@ -16,19 +16,24 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <com.facebook.drawee.view.SimpleDraweeView
                 android:id="@+id/item_cook_main_iv_thumbnail"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:layout_margin="5dp"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="15dp"
                 />
             <TextView
                 android:id="@+id/item_cook_main_tv_title"
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
+                android:layout_height="40dp"
                 android:layout_toEndOf="@id/item_cook_main_iv_thumbnail"
-                android:layout_marginTop="5dp"
-                android:text="标题"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical"
+                android:textSize="18dp"
                 />
 
             <TextView
@@ -37,7 +42,8 @@
                 android:layout_height="30dp"
                 android:layout_toEndOf="@id/item_cook_main_iv_thumbnail"
                 android:layout_below="@id/item_cook_main_tv_title"
-                android:text="内容"
+                android:gravity="center_vertical"
+                android:textSize="12dp"
                 />
         </RelativeLayout>
 
@@ -47,12 +53,19 @@
             android:layout_height="wrap_content"
             android:paddingRight="20dp"
             android:paddingLeft="20dp"
-            app:el_expanded="false">
+            android:paddingTop="5dp"
+            app:el_expanded="true">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#cdcdcd"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"/>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -72,18 +85,35 @@
                     android:id="@+id/item_cook_main_tv_content_2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
-                <Button
-                    android:id="@+id/item_cook_main_bt_detail"
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#cdcdcd"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"/>
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="详细"
-                    />
-                <Button
-                    android:id="@+id/item_cook_main_bt_save"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="保存"
-                    />
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal">
+                    <Button
+                        android:id="@+id/item_cook_main_bt_detail"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="详细"
+                        />
+                    <Button
+                        android:id="@+id/item_cook_main_bt_save"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="保存"
+                        />
+
+                </LinearLayout>
 
             </LinearLayout>
         </net.cachapa.expandablelayout.ExpandableLayout>

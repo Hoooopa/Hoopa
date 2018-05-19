@@ -162,7 +162,7 @@ public class CookMainRcvAdapter extends RecyclerView.Adapter<CookMainRcvAdapter.
         Uri uri = Uri.parse(data.get(position).getPic());
         holder.thumbnail.setImageURI(uri);
         holder.title.setText(data.get(position).getName());
-        holder.content1.setText("准备时间:"+"  " +data.get(position).getPreparetime() + "\n" + "烹饪时间:" + "  " + data.get(position).getCookingtime() );
+        holder.content1.setText("准备时间:"+"  " +data.get(position).getPreparetime()+ "    " + "烹饪时间:" + "  " + data.get(position).getCookingtime() );
         holder.content2.setText(data.get(position).getContent());
         holder.material.setText(m);
     }
