@@ -67,8 +67,6 @@ public class CookFragment extends BaseFragment implements ICookView {
     @BindView(R.id.fragment_cook_iv_search)
     ImageView ivSearch;
 
-
-
     private Unbinder unbinder;
     private CookPresenter presenter;
     private List<String> bannerId = new ArrayList<>();
@@ -122,16 +120,16 @@ public class CookFragment extends BaseFragment implements ICookView {
         refreshCook.setRefreshHeader(new ClassicsHeader(getContext()));
 
         /**
-         * Toolbar的操作 和ScrollView的操作
+         * 修改hintal颜色啊~
          */
-        toolbarCook.setBackgroundColor(Color.argb(0, 255, 255, 255));
-
+        etKey.setHintTextColor(getResources().getColor(R.color.textColorSecondary));
     }
 
     private void initData(){
         presenter.getBannerData();
-        presenter.getRcvData(rcvStart);
+        presenter.getRcvData(rcvStart);       //伪随机推荐(请求start为0，classid随机)
 
+        //用于计算Toolbar与header高度差
         headerHeight = getResources().getDimension(R.dimen.dimen_banner);
         minHeaderHeight = getResources().getDimension(R.dimen.abc_action_bar_default_height_material);
     }
@@ -157,6 +155,7 @@ public class CookFragment extends BaseFragment implements ICookView {
 
             @Override
             public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+
                 presenter.getRcvData(rcvStart);
             }
         });
@@ -184,7 +183,7 @@ public class CookFragment extends BaseFragment implements ICookView {
                     ivSearch.setImageResource(R.drawable.ic_cook_search_white);
                 }else {
                     llSearch.setBackground(getActivity().getDrawable(R.drawable.ll_cook_search_bg_white));
-                    etKey.setHintTextColor(Color.GRAY);
+                    etKey.setHintTextColor(getResources().getColor(R.color.textColorSecondary));
                     ivSearch.setImageResource(R.drawable.ic_cook_search_grey);
                 }
 
@@ -218,6 +217,7 @@ public class CookFragment extends BaseFragment implements ICookView {
         bannerCook.setImages(bannerUrl);
         bannerCook.setBannerTitles(bannerTitle);
         bannerCook.start();//注意：别漏了.轮播图.start();
+
         refreshCook.finishRefresh();
     }
 

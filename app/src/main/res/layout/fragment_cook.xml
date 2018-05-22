@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    android:background="#F0F0F0">
+    android:background="@color/lightbackground">
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
         android:id="@+id/fragment_cook_refresh"
         android:layout_width="match_parent"
@@ -30,8 +30,6 @@
                     android:id="@+id/fragment_cook_rcv"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:paddingRight="10dp"
-                    android:paddingLeft="10dp"
                     />
             </LinearLayout>
         </com.hoooopa.hoopa.hoopa.widget.TranslucentNestedScrollView>
@@ -42,6 +40,7 @@
         android:id="@+id/fragment_cook_toobar"
         android:layout_width="match_parent"
         android:layout_height="56dp"
+        android:background="@color/transparent"
         >
         <RelativeLayout
             android:layout_width="match_parent"
@@ -54,7 +53,7 @@
                 android:layout_marginTop="13dp"
                 android:layout_marginBottom="13dp"
                 android:layout_marginEnd="50dp"
-                android:background="@drawable/ll_cook_search_bg_grey"
+                android:background="@drawable/ll_cook_search_bg_white"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -73,6 +72,7 @@
                     android:background="@null"
                     android:hint="输入关键字查找菜谱"
                     android:textSize="14sp"
+                    android:singleLine="true"
                     />
             </LinearLayout>
 

@@ -3,26 +3,37 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#fafafa">
+    android:background="@color/lightbackground">
 
     <com.youth.banner.Banner
         android:id="@+id/fragment_douban_banner"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="220dp"
         app:image_scale_type="fit_xy"
         />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_marginTop="180dp"
+        android:layout_marginTop="210dp"
         android:layout_marginStart="60dp"
         android:layout_marginEnd="60dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:background="@drawable/ll_douban_search_bg"
+        android:elevation="3dp"
+        >
 
-        <ImageView
+        <RelativeLayout
             android:layout_width="40dp"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_douban_search"
+                android:layout_centerInParent="true"
+                />
+        </RelativeLayout>
+
 
         <EditText
             android:layout_width="match_parent"
@@ -32,6 +43,7 @@
             android:gravity="center_vertical"
             android:hint="搜索电影"
             android:textSize="14sp"
+            android:singleLine="true"
             />
 
     </LinearLayout>
@@ -59,7 +71,7 @@
             android:layout_marginTop="7dp"
             android:layout_marginBottom="7dp"
             android:layout_marginLeft="7dp"
-            android:background="@color/textColorThird" />
+            android:background="@color/darkbackground" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -107,7 +119,7 @@
             android:layout_marginTop="7dp"
             android:layout_marginBottom="7dp"
             android:layout_marginLeft="7dp"
-            android:background="@color/textColorThird" />
+            android:background="@color/darkbackground" />
 
         <TextView
             android:layout_width="wrap_content"

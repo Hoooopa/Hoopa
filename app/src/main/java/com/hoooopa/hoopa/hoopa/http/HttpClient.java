@@ -82,4 +82,7 @@ public interface HttpClient {
      */
     @GET("us_box")
     Observable<UsMovieListBean> getMovieUsBox();
+
+
+    //-------------------------Gank干活集中营api----------------------------------//
 }

@@ -4,16 +4,7 @@ import java.util.List;
 
 public class Subjects {
 
-    public class rating{
-
-        public int max;
-
-        public double average;
-
-        public String stars;
-
-        public int min;
-    }
+    public Rating rating;
 
     public List<String> genres;
 
@@ -31,14 +22,7 @@ public class Subjects {
 
     public String year;
 
-    public class images{
-
-        public String small;
-
-        public String large;
-
-        public String medium;
-    }
+    public Images images;
 
     public String alt;
 

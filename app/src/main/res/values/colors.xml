@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--系统颜色-->
-    <color name="colorPrimary">#00BCD4</color>
-    <color name="colorPrimaryDark">#0097A7</color>
-    <color name="colorPrimaryLight">#B2EBF2</color>
-    <color name="colorAccent">#03a9f4</color>
+    <color name="colorPrimary">#03A9F4</color>
+    <color name="colorPrimaryDark">#0288D1</color>
+    <color name="colorPrimaryLight">#B3E5FC</color>
+    <color name="colorAccent">#00BCD4</color>
     <!--文字颜色-->
     <color name="textColorPrimary">#212121</color>
     <color name="textColorSecondary">#757575</color>
-    <color name="textColorThird">#BDBDBD</color>
+    <color name="darkbackground">#BDBDBD</color>
+    <color name="lightbackground">#FAFAFA</color>
     <!--纯色系-->
     <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
 
     <!--底部Bottombar上面的View-->
     <color name="bottombarView">#10000000</color>
@@ -18,6 +20,5 @@
     <color name="guide_bt_text">#75DDFB</color>
     <!--透明色-->
     <color name="transparent">#00000000</color>
-    <!--云阅灰色背景-->
-    <color name="content_bg_color">#F1F3F4</color>
+
 </resources>

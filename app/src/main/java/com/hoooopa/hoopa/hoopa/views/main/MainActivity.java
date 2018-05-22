@@ -16,6 +16,7 @@ import com.hoooopa.hoopa.hoopa.views.main.douban.main.DoubanFragment;
 import com.hoooopa.hoopa.hoopa.views.main.gank.main.GankFragment;
 import com.hoooopa.hoopa.hoopa.views.main.home.main.HomeFragment;
 import com.hoooopa.hoopa.hoopa.views.main.last.main.LastFragment;
+import com.hoooopa.hoopa.hoopa.widget.MyViewPager;
 import com.jaeger.library.StatusBarUtil;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabReselectListener;
@@ -37,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.activity_main_bottombar)
     BottomBar bbMain;
     @BindView(R.id.activity_main_vp)
-    ViewPager vpMain;
+    MyViewPager vpMain;
 
     List<BaseFragment> fragmentList = new ArrayList<>();
 
@@ -49,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-     //   StatusBarUtil.setColor(MainActivity.this, Color.argb(125,0,188,212));
+ //       StatusBarUtil.setTranslucent(MainActivity.this);
         ButterKnife.bind(this);
 
         initContentFragment();
@@ -78,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        vpMain.setScanScroll(false);
         vpMain.setOffscreenPageLimit(vpOffscreenPage);
 
     }

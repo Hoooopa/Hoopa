@@ -9,7 +9,16 @@ import com.hoooopa.hoopa.hoopa.R;
 import com.hoooopa.hoopa.hoopa.base.BaseFragment;
 import com.hoooopa.hoopa.hoopa.bean.doubanbean.MovieListBean;
 import com.hoooopa.hoopa.hoopa.bean.doubanbean.UsMovieListBean;
+import com.hoooopa.hoopa.hoopa.bean.doubanbean.content.Subjects;
+import com.hoooopa.hoopa.hoopa.widget.GlideImageLoader;
+import com.youth.banner.Banner;
+import com.youth.banner.BannerConfig;
+import com.youth.banner.Transformer;
+import com.youth.banner.listener.OnBannerListener;
 
+import java.util.List;
+
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
@@ -20,6 +29,9 @@ import butterknife.Unbinder;
 public class DoubanFragment extends BaseFragment implements IDoubanView{
 
     private Unbinder unbinder;
+
+    @BindView(R.id.fragment_douban_banner)
+    Banner bannerDouban;
 
     private DoubanPresenter presenter;
 
@@ -35,15 +47,45 @@ public class DoubanFragment extends BaseFragment implements IDoubanView{
     public void onActivityCreated(Bundle savedInstanceState){
         super.onActivityCreated(savedInstanceState);
         initDatas();
+        initViews();
+        initListener();
     }
 
 
 
     private void initDatas(){
-        presenter.getBannerData(6);
+        //轮播图建议6个数据.但是我还是要上10个数据
+        presenter.getBannerData(10);
+        //即将上映18个数据
         presenter.getComingData(18);
     }
 
+    private void initViews(){
+        /**
+         * banner的一系列操作
+         * 还没加入数据
+         */
+        bannerDouban.setBannerStyle(BannerConfig.NUM_INDICATOR_TITLE);
+        bannerDouban.setImageLoader(new GlideImageLoader());
+        bannerDouban.setBannerAnimation(Transformer.Default);
+        bannerDouban.isAutoPlay(true);
+        bannerDouban.setDelayTime(3500);
+        bannerDouban.setIndicatorGravity(BannerConfig.RIGHT);
+        bannerDouban.setBackgroundResource(R.drawable.douban_banner_default);
+
+    }
+
+    private void initListener(){
+
+        bannerDouban.setOnBannerListener(new OnBannerListener() {
+            @Override
+            public void OnBannerClick(int position) {
+
+            }
+        });
+
+
+    }
 
     /**
      * 一系列对Banner的操作
@@ -59,10 +101,15 @@ public class DoubanFragment extends BaseFragment implements IDoubanView{
     }
 
     @Override
-    public void onBannerData_Success(MovieListBean movieListBean) {
-        MovieListBean movieListBean1 = movieListBean;
-        int i = 1+2;
+    public void onBannerData_Success(MovieListBean movieListBean, List<String> bannerID, List<String> bannerTitle, List<String> bannerImg) {
+
+        bannerDouban.setBannerTitles(bannerTitle);
+        bannerDouban.setImages(bannerImg);
+        bannerDouban.start();
+
+
     }
+
 
 
     /**
@@ -79,7 +126,7 @@ public class DoubanFragment extends BaseFragment implements IDoubanView{
     }
 
     @Override
-    public void onComing_Success(MovieListBean movieListBean) {
+    public void onComing_Success(List<Subjects> subjects) { //返回Subject直接用于Rcv。然后点击详情的时候也直接传这个Subject.get(i)就好
 
     }
 

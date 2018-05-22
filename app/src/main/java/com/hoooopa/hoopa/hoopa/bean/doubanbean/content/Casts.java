@@ -4,14 +4,7 @@ class Casts {
 
     public String alt;
 
-    public class avatars{
-
-        public String small;
-
-        public String large;
-
-        public String medium;
-    }
+    public Avatars avatars;
 
     public String name;
 
