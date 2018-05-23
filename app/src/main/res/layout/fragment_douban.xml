@@ -1,69 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/lightbackground">
-
-    <com.youth.banner.Banner
-        android:id="@+id/fragment_douban_banner"
-        android:layout_width="match_parent"
-        android:layout_height="220dp"
-        app:image_scale_type="fit_xy"
-        />
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginTop="210dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginEnd="60dp"
-        android:orientation="horizontal"
-        android:background="@drawable/ll_douban_search_bg"
-        android:elevation="3dp"
-        >
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/lightbackground">
 
-        <RelativeLayout
-            android:layout_width="40dp"
-            android:layout_height="match_parent">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_douban_search"
-                android:layout_centerInParent="true"
-                />
-        </RelativeLayout>
-
-
-        <EditText
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.youth.banner.Banner
+            android:id="@+id/fragment_douban_banner"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@null"
-            android:layout_marginRight="20dp"
-            android:gravity="center_vertical"
-            android:hint="搜索电影"
-            android:textSize="14sp"
-            android:singleLine="true"
+            android:layout_height="220dp"
+            app:image_scale_type="fit_xy"
             />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="210dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginEnd="60dp"
+            android:orientation="horizontal"
+            android:background="@drawable/ll_douban_search_bg"
+            android:elevation="3dp"
+            >
 
-    </LinearLayout>
+            <RelativeLayout
+                android:layout_width="40dp"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_douban_search"
+                    android:layout_centerInParent="true"
+                    />
+            </RelativeLayout>
 
-    <!--豆瓣Top250，北美票房榜等-->
-    <LinearLayout
-        android:id="@+id/fragment_douban_choose_bt"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:orientation="horizontal"
-        android:layout_marginTop="200dp">
 
-    </LinearLayout>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:layout_marginRight="20dp"
+                android:gravity="center_vertical"
+                android:hint="搜索电影"
+                android:textSize="14sp"
+                android:singleLine="true"
+                />
+
+        </LinearLayout>
+
+        <!--豆瓣Top250，北美票房榜等-->
+        <LinearLayout
+            android:id="@+id/fragment_douban_choose_bt"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="200dp">
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
 
     <!--即将上映-->
     <RelativeLayout
         android:id="@+id/fragment_douban_coming"
         android:layout_width="match_parent"
         android:layout_height="30dp"
-        android:layout_below="@id/fragment_douban_choose_bt">
+        android:background="@color/white">
 
         <View
             android:layout_width="3dp"
@@ -97,21 +108,25 @@
         android:id="@+id/fragment_douban_ll_coming"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/fragment_douban_coming">
+        android:background="@color/white">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/fragment_douban_rcv_coming"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
             />
 
     </LinearLayout>
+
 
     <RelativeLayout
         android:id="@+id/fragment_douban_rl_save"
         android:layout_width="match_parent"
         android:layout_height="30dp"
-        android:layout_below="@id/fragment_douban_ll_coming">
+        android:background="@color/white">
 
         <View
             android:layout_width="3dp"
@@ -131,17 +146,17 @@
             />
     </RelativeLayout>
 
-    <LinearLayout
-        android:id="@+id/fragment_douban_ll_save"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/fragment_douban_rl_save">
+        android:layout_height="wrap_content">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/fragment_douban_rcv_save"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
+    </FrameLayout>
+
     </LinearLayout>
 
-</RelativeLayout>
+</android.support.v4.widget.NestedScrollView>

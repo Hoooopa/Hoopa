@@ -21,5 +21,6 @@ public interface IDoubanView extends IBaseView {
     void onComing_Failed(String error);
     void onComing_Success(List<Subjects> subjects);
 
-
+    void onSaveData_null();
+    void onSaveData_Got(List<Subjects> subjects);
 }

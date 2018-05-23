@@ -1,9 +1,7 @@
-package com.hoooopa.hoopa.hoopa.adapter;
+package com.hoooopa.hoopa.hoopa.adapter.cook;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Icon;
-import android.icu.text.RelativeDateTimeFormatter;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,26 +9,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.OvershootInterpolator;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.drawee.generic.RoundingParams;
-import com.facebook.drawee.view.DraweeView;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.hoooopa.hoopa.hoopa.R;
 import com.hoooopa.hoopa.hoopa.bean.cookbean.CookBase;
 import com.hoooopa.hoopa.hoopa.views.main.cook.detail.DetailActivity;
-import com.squareup.picasso.Picasso;
 
 import net.cachapa.expandablelayout.ExpandableLayout;
+
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Created by Pray on 2018/4/30.
@@ -46,7 +40,7 @@ public class CookMainRcvAdapter extends RecyclerView.Adapter<CookMainRcvAdapter.
     private static final int UNSELECTED = -1;
     private int selectedItem = UNSELECTED;
 
-    public CookMainRcvAdapter(Context context , List<CookBase> data , RecyclerView rcv ,onCookRcvClickListener listener) {
+    public CookMainRcvAdapter(Context context , List<CookBase> data , RecyclerView rcv , onCookRcvClickListener listener) {
         this.context = context;
         this.data = data;
         this.rcv = rcv;

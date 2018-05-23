@@ -71,5 +71,19 @@ public class DoubanPresenter extends BasePresenter<IDoubanView> {
     }
 
 
+    public void getSaveData() {
+//        //从数据库里拿数据
+//        if (true )
+//        {
+//            //如果没有数据
+//            view.onSaveData_null();
+//        }else  {
 
+            List<Subjects> subjects = new ArrayList<>();
+            view.onSaveData_Got(subjects);
+//        }
+
+
+
+    }
 }

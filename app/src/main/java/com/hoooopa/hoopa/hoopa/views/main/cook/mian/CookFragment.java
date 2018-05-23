@@ -15,7 +15,7 @@ import android.widget.Toast;
 import android.support.v7.widget.Toolbar;
 
 import com.hoooopa.hoopa.hoopa.R;
-import com.hoooopa.hoopa.hoopa.adapter.CookMainRcvAdapter;
+import com.hoooopa.hoopa.hoopa.adapter.cook.CookMainRcvAdapter;
 import com.hoooopa.hoopa.hoopa.base.BaseFragment;
 import com.hoooopa.hoopa.hoopa.bean.cookbean.CookBase;
 
