@@ -154,9 +154,7 @@ public class DoubanFragment extends BaseFragment implements IDoubanView {
             public void onItemClickListener(Subjects subjects) {
                 Intent intent = new Intent();
                 intent.setClass(getActivity(), MovieDetailActivity.class);
-                ActivityOptions transitionOptions = ActivityOptions.makeSceneTransitionAnimation(getActivity(),getActivity().findViewById(R.id.item_douban_coming_iv_thumbnail),"share_movie_img");
-                Bundle bundle = transitionOptions.toBundle();
-                startActivity(intent,bundle);
+
             }
         });
         rcvComing.setAdapter(comingAdapter);

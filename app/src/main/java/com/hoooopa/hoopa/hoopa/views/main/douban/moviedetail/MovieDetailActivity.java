@@ -19,8 +19,7 @@ import butterknife.ButterKnife;
 
 public class MovieDetailActivity extends AppCompatActivity {
 
-    @BindView(R.id.item_douban_coming_iv_thumbnail)
-    ImageView img;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -37,10 +36,7 @@ public class MovieDetailActivity extends AppCompatActivity {
 
     private void initView(){
 
-        Slide slide = new Slide();
-        slide.setDuration(500);
-        slide.setSlideEdge(Gravity.RIGHT);
-        getWindow().setSharedElementEnterTransition(slide);
+
 
     }
 }

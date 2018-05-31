@@ -17,7 +17,7 @@ import com.facebook.drawee.generic.RoundingParams;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.hoooopa.hoopa.hoopa.R;
 import com.hoooopa.hoopa.hoopa.bean.cookbean.CookBase;
-import com.hoooopa.hoopa.hoopa.views.main.cook.detail.DetailActivity;
+import com.hoooopa.hoopa.hoopa.views.main.cook.detail.CookDetailActivity;
 
 import net.cachapa.expandablelayout.ExpandableLayout;
 
@@ -91,7 +91,7 @@ public class CookMainRcvAdapter extends RecyclerView.Adapter<CookMainRcvAdapter.
                     listener.onThumbClickListener(data.get(position).getPic());
                     break;
                 case R.id.item_cook_main_bt_detail:
-                    Intent intent = new Intent(context,DetailActivity.class);
+                    Intent intent = new Intent(context,CookDetailActivity.class);
                     intent.putExtra("id",data.get(position).getId());
                     context.startActivity(intent);
                     break;

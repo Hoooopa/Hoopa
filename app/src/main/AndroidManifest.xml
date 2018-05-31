@@ -30,9 +30,9 @@
         <activity android:name=".views.main.MainActivity" android:screenOrientation="portrait" android:exported="true"/>
         <activity android:name=".views.guide.GuideActivity" android:screenOrientation="portrait"/>
         <!--Cookbook菜谱的Activity-->
-        <activity android:name=".views.main.cook.choose.ChooseActivity" android:screenOrientation="portrait" android:exported="true"/>
-        <activity android:name=".views.main.cook.detail.DetailActivity" android:screenOrientation="portrait" android:exported="true"/>
-        <activity android:name=".views.main.cook.save.SaveActivity" android:screenOrientation="portrait" android:exported="true"/>
+        <activity android:name=".views.main.cook.choose.CookChooseActivity" android:screenOrientation="portrait" android:exported="true"/>
+        <activity android:name=".views.main.cook.detail.CookDetailActivity" android:screenOrientation="portrait" android:exported="true"/>
+        <activity android:name=".views.main.cook.save.CookSaveActivity" android:screenOrientation="portrait" android:exported="true"/>
         <!--豆瓣电影的Acivity-->
         <activity android:name=".views.main.douban.moviedetail.MovieDetailActivity" android:screenOrientation="portrait" android:exported="true"/>
 

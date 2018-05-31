@@ -21,7 +21,7 @@ import com.hoooopa.hoopa.hoopa.bean.cookbean.CookBase;
 
 import com.hoooopa.hoopa.hoopa.widget.ClearEditText;
 import com.hoooopa.hoopa.hoopa.widget.ScrollLinearLayoutManager;
-import com.hoooopa.hoopa.hoopa.views.main.cook.detail.DetailActivity;
+import com.hoooopa.hoopa.hoopa.views.main.cook.detail.CookDetailActivity;
 import com.hoooopa.hoopa.hoopa.widget.GlideImageLoader;
 import com.hoooopa.hoopa.hoopa.widget.TranslucentNestedScrollView;
 
@@ -141,7 +141,7 @@ public class CookFragment extends BaseFragment implements ICookView {
         bannerCook.setOnBannerListener(new OnBannerListener() {
             @Override
             public void OnBannerClick(int position) {
-                Intent intent = new Intent(getActivity(), DetailActivity.class);
+                Intent intent = new Intent(getActivity(), CookDetailActivity.class);
                 intent.putExtra("classid",bannerId.get(position));
                 startActivity(intent);
             }
