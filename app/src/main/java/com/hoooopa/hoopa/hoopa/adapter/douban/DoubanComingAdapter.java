@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.hoooopa.hoopa.hoopa.R;
 import com.hoooopa.hoopa.hoopa.bean.doubanbean.content.Subjects;
+import com.hoooopa.hoopa.hoopa.views.main.douban.main.IDoubanView;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -22,10 +23,13 @@ public class DoubanComingAdapter extends RecyclerView.Adapter<DoubanComingAdapte
 
     private Context context;
     private List<Subjects> subjects;
+    private  onComingItemClickListener onComingItemClickListener ;
 
-    public DoubanComingAdapter(Context context, List<Subjects> subjects){
+
+    public DoubanComingAdapter(Context context, List<Subjects> subjects, onComingItemClickListener listener){
         this.subjects = subjects;
         this.context = context;
+        this.onComingItemClickListener = listener;
     }
 
 
@@ -38,10 +42,16 @@ public class DoubanComingAdapter extends RecyclerView.Adapter<DoubanComingAdapte
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ComingRcvViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ComingRcvViewHolder holder, final int position) {
         holder.bind(position);
         Picasso.get().load(subjects.get(position).images.small).into(holder.ivThumbnail);
         holder.tvTitle.setText(subjects.get(position).title);
+        holder.ivThumbnail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onComingItemClickListener.onItemClickListener(subjects.get(position));
+            }
+        });
 
     }
 
@@ -67,6 +77,12 @@ public class DoubanComingAdapter extends RecyclerView.Adapter<DoubanComingAdapte
         public void bind(int position){
             this.position = position;
         }
+    }
+
+
+
+    public interface onComingItemClickListener{
+        void onItemClickListener(Subjects subjects);
     }
 
 

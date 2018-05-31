@@ -35,4 +35,7 @@ public interface ICookView {
 
     void onRcvData_Failure(String data);
 
+
+
+
 }

@@ -1,6 +1,9 @@
 package com.hoooopa.hoopa.hoopa.views.main.douban.main;
 
+import android.app.ActivityOptions;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,6 +17,7 @@ import com.hoooopa.hoopa.hoopa.adapter.douban.DoubanSaveAdapter;
 import com.hoooopa.hoopa.hoopa.base.BaseFragment;
 import com.hoooopa.hoopa.hoopa.bean.doubanbean.MovieListBean;
 import com.hoooopa.hoopa.hoopa.bean.doubanbean.content.Subjects;
+import com.hoooopa.hoopa.hoopa.views.main.douban.moviedetail.MovieDetailActivity;
 import com.hoooopa.hoopa.hoopa.widget.GlideImageLoader;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
@@ -30,7 +34,7 @@ import butterknife.Unbinder;
  * Created by Pray on 2018/4/27.
  */
 
-public class DoubanFragment extends BaseFragment implements IDoubanView{
+public class DoubanFragment extends BaseFragment implements IDoubanView {
 
     private Unbinder unbinder;
 
@@ -145,7 +149,16 @@ public class DoubanFragment extends BaseFragment implements IDoubanView{
 
     @Override
     public void onComing_Success(List<Subjects> subjects) { //返回Subject直接用于Rcv。然后点击详情的时候也直接传这个Subject.get(i)就好
-        comingAdapter = new DoubanComingAdapter(getContext(),subjects);
+        comingAdapter = new DoubanComingAdapter(getContext(), subjects, new DoubanComingAdapter.onComingItemClickListener() {
+            @Override
+            public void onItemClickListener(Subjects subjects) {
+                Intent intent = new Intent();
+                intent.setClass(getActivity(), MovieDetailActivity.class);
+                ActivityOptions transitionOptions = ActivityOptions.makeSceneTransitionAnimation(getActivity(),getActivity().findViewById(R.id.item_douban_coming_iv_thumbnail),"share_movie_img");
+                Bundle bundle = transitionOptions.toBundle();
+                startActivity(intent,bundle);
+            }
+        });
         rcvComing.setAdapter(comingAdapter);
 
 
@@ -172,6 +185,7 @@ public class DoubanFragment extends BaseFragment implements IDoubanView{
         super.onDestroyView();
         unbinder.unbind();
     }
+
 
 
 }

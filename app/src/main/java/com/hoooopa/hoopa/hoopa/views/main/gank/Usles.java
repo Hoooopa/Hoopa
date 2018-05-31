@@ -5,4 +5,5 @@ package com.hoooopa.hoopa.hoopa.views.main.gank;
  */
 
 public class Usles {
+
 }

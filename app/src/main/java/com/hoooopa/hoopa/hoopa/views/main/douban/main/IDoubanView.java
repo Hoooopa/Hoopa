@@ -23,4 +23,5 @@ public interface IDoubanView extends IBaseView {
 
     void onSaveData_null();
     void onSaveData_Got(List<Subjects> subjects);
+
 }
