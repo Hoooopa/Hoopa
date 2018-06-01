@@ -27,4 +27,8 @@ public class Constants {
      */
     public static String DOUBAN_API_BASE_URL = "http://api.douban.com/v2/movie/";
 
+    /**
+     * Gank 干货集中营的BaseUrl
+     */
+    public static String GANK_IO_BASE_URL = "http://gank.io/api/data/";
 }

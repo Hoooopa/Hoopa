@@ -7,6 +7,8 @@ import com.hoooopa.hoopa.hoopa.bean.doubanbean.UsMovieListBean;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
+import retrofit2.http.Part;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 /**
@@ -85,4 +87,10 @@ public interface HttpClient {
 
 
     //-------------------------Gank干活集中营api----------------------------------//
+
+    @GET("Android/{count}/{page}")
+    Observable<> getGankAndroidData(@Path("count") int count,@Path("page") int page);
+
+
+
 }
