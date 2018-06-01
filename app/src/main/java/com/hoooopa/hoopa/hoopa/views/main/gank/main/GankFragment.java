@@ -14,6 +14,7 @@ import com.hoooopa.hoopa.hoopa.base.IBaseView;
 import com.hoooopa.hoopa.hoopa.views.main.gank.all.GankAllFragment;
 import com.hoooopa.hoopa.hoopa.views.main.gank.android.GankAndroidFragment;
 import com.hoooopa.hoopa.hoopa.views.main.gank.girls.GankGirlsFragment;
+import com.hoooopa.hoopa.hoopa.views.main.gank.video.GankVideoFragment;
 import com.hoooopa.hoopa.hoopa.widget.MyViewPager;
 
 import java.util.ArrayList;
@@ -56,12 +57,14 @@ public class GankFragment extends BaseFragment  {
     }
 
     private void initDatas(){
-        fragmentList.add(new GankGirlsFragment());
         fragmentList.add(new GankAndroidFragment());
         fragmentList.add(new GankAllFragment());
-        titleList.add("福利");
+        fragmentList.add(new GankGirlsFragment());
+        fragmentList.add(new GankVideoFragment());
         titleList.add("大安卓");
-        titleList.add("定制");
+        titleList.add("All");
+        titleList.add("福利");
+        titleList.add("小视频");
     }
 
     private void initViews() {
@@ -81,7 +84,7 @@ public class GankFragment extends BaseFragment  {
         tbGank.getTabAt(0).setText(titleList.get(0));
         tbGank.getTabAt(1).setText(titleList.get(1));
         tbGank.getTabAt(2).setText(titleList.get(2));
-
+        tbGank.getTabAt(3).setText(titleList.get(3));
 
 
     }

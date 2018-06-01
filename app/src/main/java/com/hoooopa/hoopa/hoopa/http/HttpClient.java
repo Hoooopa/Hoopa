@@ -86,11 +86,31 @@ public interface HttpClient {
     Observable<UsMovieListBean> getMovieUsBox();
 
 
-    //-------------------------Gank干活集中营api----------------------------------//
+    //-------------------------Gank干货集中营api----------------------------------//
 
-    @GET("Android/{count}/{page}")
+    /**
+     *
+     * @param count 每页数量 > 0
+     * @param page  第几页 > 0
+     * @return
+     */
+    @GET("{Android/{count}/{page}")
     Observable<> getGankAndroidData(@Path("count") int count,@Path("page") int page);
 
+    @GET("{iOS/{count}/{page}")
+    Observable<> getGankIOSdData(@Path("count") int count,@Path("page") int page);
+
+    @GET("{前端/{count}/{page}")
+    Observable<> getGankWebData(@Path("count") int count,@Path("page") int page);
+
+    @GET("{拓展资源/{count}/{page}")
+    Observable<> getGankMoreData(@Path("count") int count,@Path("page") int page);
+
+    @GET("{福利/{count}/{page}")
+    Observable<> getGankGirlsData(@Path("count") int count,@Path("page") int page);
+
+    @GET("{休息视频/{count}/{page}")
+    Observable<> getGankVideoData(@Path("count") int count,@Path("page") int page);
 
 
 }
