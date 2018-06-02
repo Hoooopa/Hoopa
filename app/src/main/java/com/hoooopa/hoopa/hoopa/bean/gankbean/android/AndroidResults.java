@@ -4,26 +4,18 @@ package com.hoooopa.hoopa.hoopa.bean.gankbean.android;
  * Created by Pray on 2018/6/1.
  */
 
-public class Results {
+public class AndroidResults {
 
-    private String _id;      //5b0cad41421aa97f00f67c68
-
-    private String createdAt;   //2018-05-29T09:30:41.817Z
-
-    private String desc;       //\u6839\u636e\u914d\u7f6e\u6570\u636e\u52a8\u6001\u8bbe\u7f6e\u5e94\u7528\u5185\u7684icon\uff0c\u4e0d\u9700\u4fee\u6539\u4ee3\u7801\u5c31\u5b8c\u6210\u5566\uff01
-
-    private String publishedAt;   //2018-05-29T15:38:50.405Z
-
-    private String source;    //web
-
-    private String type;   //Android
-
-    private String url;    //https://www.jianshu.com/p/e644bf32def6
-
-    private boolean used; //true
-
-    private String who;   //echoMu
-
+    private String _id;
+    private String createdAt;
+    private String desc;
+    private String[] images;
+    private String publishedAt;
+    private String source;
+    private String type;
+    private String url;
+    private boolean used;
+    private String who;
 
     public String get_id() {
         return _id;
@@ -95,5 +87,13 @@ public class Results {
 
     public void setWho(String who) {
         this.who = who;
+    }
+
+    public String[] getImages() {
+        return images;
+    }
+
+    public void setImages(String[] images) {
+        this.images = images;
     }
 }

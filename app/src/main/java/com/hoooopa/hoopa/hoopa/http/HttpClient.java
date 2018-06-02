@@ -4,9 +4,16 @@ import com.hoooopa.hoopa.hoopa.bean.cookbean.cookid.CookFromIDBean;
 import com.hoooopa.hoopa.hoopa.bean.cookbean.cooklist.CookFromListBean;
 import com.hoooopa.hoopa.hoopa.bean.doubanbean.MovieListBean;
 import com.hoooopa.hoopa.hoopa.bean.doubanbean.UsMovieListBean;
+import com.hoooopa.hoopa.hoopa.bean.gankbean.android.Androidbean;
+import com.hoooopa.hoopa.hoopa.bean.gankbean.girls.GirlsBean;
+import com.hoooopa.hoopa.hoopa.bean.gankbean.ios.IosBean;
+import com.hoooopa.hoopa.hoopa.bean.gankbean.more.MoreBean;
+import com.hoooopa.hoopa.hoopa.bean.gankbean.video.VideoBean;
+import com.hoooopa.hoopa.hoopa.bean.gankbean.web.WebBean;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
+import retrofit2.http.HTTP;
 import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
@@ -87,30 +94,32 @@ public interface HttpClient {
 
 
     //-------------------------Gank干货集中营api----------------------------------//
+    //数据类型： 福利 | Android | iOS | 休息视频 | 拓展资源 | 前端 | all
 
     /**
-     *
+     * 获取Android数据;以下类推
      * @param count 每页数量 > 0
      * @param page  第几页 > 0
      * @return
      */
-    @GET("{Android/{count}/{page}")
-    Observable<> getGankAndroidData(@Path("count") int count,@Path("page") int page);
+    @HTTP(method = "GET" , path = "{Android/{count}/{page}" ,hasBody = false)
+    Observable<Androidbean> getGankAndroidData(@Path("count") int count, @Path("page") int page);
 
     @GET("{iOS/{count}/{page}")
-    Observable<> getGankIOSdData(@Path("count") int count,@Path("page") int page);
+    Observable<IosBean> getGankIOSdData(@Path("count") int count, @Path("page") int page);
+
 
     @GET("{前端/{count}/{page}")
-    Observable<> getGankWebData(@Path("count") int count,@Path("page") int page);
+    Observable<WebBean> getGankWebData(@Path("count") int count, @Path("page") int page);
 
     @GET("{拓展资源/{count}/{page}")
-    Observable<> getGankMoreData(@Path("count") int count,@Path("page") int page);
+    Observable<MoreBean> getGankMoreData(@Path("count") int count, @Path("page") int page);
 
     @GET("{福利/{count}/{page}")
-    Observable<> getGankGirlsData(@Path("count") int count,@Path("page") int page);
+    Observable<GirlsBean> getGankGirlsData(@Path("count") int count, @Path("page") int page);
 
     @GET("{休息视频/{count}/{page}")
-    Observable<> getGankVideoData(@Path("count") int count,@Path("page") int page);
+    Observable<VideoBean> getGankVideoData(@Path("count") int count, @Path("page") int page);
 
 
 }

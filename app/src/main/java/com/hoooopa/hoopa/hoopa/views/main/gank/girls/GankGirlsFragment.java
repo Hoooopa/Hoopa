@@ -29,8 +29,8 @@ public class GankGirlsFragment extends BaseFragment implements IGankGirlsView  {
     @Override
     public void onActivityCreated(Bundle savedInstanceState){
         super.onActivityCreated(savedInstanceState);
-        initViews();
         initData();
+        initViews();
         initLisenter();
     }
 

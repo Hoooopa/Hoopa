@@ -28,21 +28,20 @@ public class GankAndroidFragment extends BaseFragment implements IGankAndroidVie
     @Override
     public void onActivityCreated(Bundle savedInstanceState){
         super.onActivityCreated(savedInstanceState);
-        initViews();
         initData();
+        initViews();
         initLisenter();
     }
 
-    private void initLisenter() {
+    private void initData(){
+        presenter.getAndroidDate();
     }
 
     private void initViews() {
     }
 
-    private void initData(){
-
+    private void initLisenter() {
     }
-
 
     /**
      * onDestroyView中进行解绑操作

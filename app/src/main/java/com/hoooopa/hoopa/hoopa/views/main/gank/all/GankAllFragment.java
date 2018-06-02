@@ -29,8 +29,8 @@ public class GankAllFragment extends BaseFragment implements IGankAllView{
     @Override
     public void onActivityCreated(Bundle savedInstanceState){
         super.onActivityCreated(savedInstanceState);
-        initViews();
         initData();
+        initViews();
         initLisenter();
     }
 

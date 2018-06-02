@@ -33,8 +33,8 @@ public class GankVideoFragment extends BaseFragment implements IGankVideoView {
     @Override
     public void onActivityCreated(Bundle savedInstanceState){
         super.onActivityCreated(savedInstanceState);
-        initViews();
         initData();
+        initViews();
         initLisenter();
     }
 
