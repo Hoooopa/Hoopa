@@ -1,5 +1,6 @@
 package com.hoooopa.hoopa.hoopa.views.main.gank.android;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
@@ -8,12 +9,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.hoooopa.hoopa.hoopa.R;
 import com.hoooopa.hoopa.hoopa.adapter.gank.GankAndroidAdapter;
 import com.hoooopa.hoopa.hoopa.base.BaseFragment;
 import com.hoooopa.hoopa.hoopa.bean.gankbean.AndroidBean;
 import com.hoooopa.hoopa.hoopa.views.main.gank.IGankView;
+import com.hoooopa.hoopa.hoopa.views.main.gank.detail.GankDetailActivity;
 import com.hoooopa.hoopa.hoopa.widget.ScrollLinearLayoutManager;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
@@ -21,6 +24,7 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 
 import java.util.List;
+import java.util.TooManyListenersException;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -64,7 +68,7 @@ public class GankAndroidFragment extends BaseFragment implements IGankView.IGank
     private void initViews() {
         LinearLayoutManager manager = new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false);
         rcvAndroid.setLayoutManager(manager);
-        refresh.setRefreshHeader(null);
+        refresh.setHeaderHeight(0);
     }
 
     private void initLisenter() {
@@ -76,7 +80,7 @@ public class GankAndroidFragment extends BaseFragment implements IGankView.IGank
 
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-
+                //目前不需要refresh操作
             }
         });
     }
@@ -94,10 +98,22 @@ public class GankAndroidFragment extends BaseFragment implements IGankView.IGank
 
 
     @Override
-    public void onAndroidData_Success(List<AndroidBean> data) {
+    public void onAndroidData_Success(final List<AndroidBean> data) {
         if (adapter == null){
             androidData = data;
-            adapter = new GankAndroidAdapter(getContext(),androidData);
+            adapter = new GankAndroidAdapter(getContext(), androidData, new GankAndroidAdapter.onGankAndroidItemLongClickListener() {
+                @Override
+                public void onItemLongClickListener(int position) {
+                    Toast.makeText(getContext(),data.get(position).getDesc(),Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onItemClickListener(int position) {
+                    Intent intent = new Intent(getActivity(), GankDetailActivity.class);
+                    intent.putExtra("url",data.get(position).getUrl());
+                    startActivity(intent);
+                }
+            });
             rcvAndroid.setAdapter(adapter);
         }else {
             androidData.addAll(data);
@@ -110,5 +126,6 @@ public class GankAndroidFragment extends BaseFragment implements IGankView.IGank
     public void onAndroidData_error(String e) {
 
     }
+
 
 }

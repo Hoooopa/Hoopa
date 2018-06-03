@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.hoooopa.hoopa.hoopa.R;
@@ -22,10 +23,13 @@ public class GankAndroidAdapter extends RecyclerView.Adapter<GankAndroidAdapter.
 
     private List<AndroidBean> data;
     private Context context;
+    private onGankAndroidItemLongClickListener onLongClickListener;
 
-    public GankAndroidAdapter(Context context , List<AndroidBean> data){
+
+    public GankAndroidAdapter(Context context , List<AndroidBean> data,onGankAndroidItemLongClickListener onGankAndroidItemLongClickListener){
         this.context = context;
         this.data = data;
+        this.onLongClickListener = onGankAndroidItemLongClickListener;
     }
 
     @NonNull
@@ -47,6 +51,7 @@ public class GankAndroidAdapter extends RecyclerView.Adapter<GankAndroidAdapter.
         @BindView(R.id.item_gank_code_name_and_type) TextView nameAndType;
         @BindView(R.id.item_gank_code_img) ImageView img;
         @BindView(R.id.item_gank_code_time) TextView time;
+        @BindView(R.id.item_gank_code_ll) LinearLayout ll;
 
         public AndroidRcvViewHolder(View itemView) {
             super(itemView);
@@ -56,7 +61,7 @@ public class GankAndroidAdapter extends RecyclerView.Adapter<GankAndroidAdapter.
     }
 
     @Override
-    public void onBindViewHolder(@NonNull GankAndroidAdapter.AndroidRcvViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull GankAndroidAdapter.AndroidRcvViewHolder holder, final int position) {
         holder.desc.setText(data.get(position).getDesc());
         if (data.get(position).getImages() == null){
             holder.img.setVisibility(View.GONE);
@@ -67,6 +72,24 @@ public class GankAndroidAdapter extends RecyclerView.Adapter<GankAndroidAdapter.
         String time1 = data.get(position).getPublishedAt().split("T")[0];
         String time2 = time1.split("-")[1] + "-" + time1.split("-")[2];
         holder.time.setText(time2);
+        holder.ll.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                onLongClickListener.onItemLongClickListener(position);
+                return true;
+            }
+        });
+        holder.ll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onLongClickListener.onItemClickListener(position);
+            }
+        });
+    }
+
+    public interface onGankAndroidItemLongClickListener{
+        void onItemLongClickListener(int position);
+        void onItemClickListener(int position);
     }
 
 }

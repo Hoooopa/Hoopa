@@ -1,16 +1,12 @@
 package com.hoooopa.hoopa.hoopa.views.main.gank.android;
 
 import com.hoooopa.hoopa.hoopa.base.BasePresenter;
-import com.hoooopa.hoopa.hoopa.bean.gankbean.AndroidBean;
 import com.hoooopa.hoopa.hoopa.bean.gankbean.GankIoDataBean;
 import com.hoooopa.hoopa.hoopa.views.main.gank.GankModel;
 import com.hoooopa.hoopa.hoopa.views.main.gank.IGankCallback;
 import com.hoooopa.hoopa.hoopa.views.main.gank.IGankView;
 
-import java.util.List;
-
-
-public class GankAndroidPresenter extends BasePresenter<IGankView.IGankAndroidView> {
+class GankAndroidPresenter extends BasePresenter<IGankView.IGankAndroidView> {
 
     private IGankView.IGankAndroidView view;
 
@@ -18,8 +14,7 @@ public class GankAndroidPresenter extends BasePresenter<IGankView.IGankAndroidVi
         this.view = view;
     }
 
-
-    public void getAndroidDate(int count , int page){
+    public void getAndroidDate(int count, int page) {
 
         new GankModel().getAndroidData(count, page, new IGankCallback.IGankAndroidCallback() {
             @Override
@@ -32,8 +27,6 @@ public class GankAndroidPresenter extends BasePresenter<IGankView.IGankAndroidVi
                 view.onAndroidData_error(error);
             }
         });
-
-
     }
 
 }
