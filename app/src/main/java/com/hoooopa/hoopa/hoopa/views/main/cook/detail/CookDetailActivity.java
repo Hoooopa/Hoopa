@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import com.hoooopa.hoopa.hoopa.R;
 import com.hoooopa.hoopa.hoopa.base.BaseActivity;
+import com.hoooopa.hoopa.hoopa.views.main.cook.ICookView;
 
 import butterknife.ButterKnife;
 
@@ -11,7 +12,7 @@ import butterknife.ButterKnife;
  * Created by Pray on 2018/4/29.
  */
 
-public class CookDetailActivity extends BaseActivity<ICookDetailView,CookDetailPresenter> implements ICookDetailView {
+public class CookDetailActivity extends BaseActivity<ICookView.ICookDetailView,CookDetailPresenter> implements ICookView.ICookDetailView {
 
     private CookDetailPresenter presenter;
 

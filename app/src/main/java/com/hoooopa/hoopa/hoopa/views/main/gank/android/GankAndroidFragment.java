@@ -1,21 +1,45 @@
 package com.hoooopa.hoopa.hoopa.views.main.gank.android;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.hoooopa.hoopa.hoopa.R;
+import com.hoooopa.hoopa.hoopa.adapter.gank.GankAndroidAdapter;
 import com.hoooopa.hoopa.hoopa.base.BaseFragment;
+import com.hoooopa.hoopa.hoopa.bean.gankbean.AndroidBean;
+import com.hoooopa.hoopa.hoopa.views.main.gank.IGankView;
+import com.hoooopa.hoopa.hoopa.widget.ScrollLinearLayoutManager;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
+import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 
+import java.util.List;
+
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public class GankAndroidFragment extends BaseFragment implements IGankAndroidView {
+public class GankAndroidFragment extends BaseFragment implements IGankView.IGankAndroidView{
 
     private Unbinder unbinder;
+    @BindView(R.id.fragment_gank_android_refresh)
+    SmartRefreshLayout refresh;
+    @BindView(R.id.fragment_gank_android_rcv)
+    RecyclerView rcvAndroid;
 
     private GankAndroidPresenter presenter;
+    private GankAndroidAdapter adapter;
+    private List<AndroidBean> androidData;
+
+    private int count = 10;
+    private int page = 1;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
@@ -34,13 +58,27 @@ public class GankAndroidFragment extends BaseFragment implements IGankAndroidVie
     }
 
     private void initData(){
-        presenter.getAndroidDate();
+        presenter.getAndroidDate(count,page);
     }
 
     private void initViews() {
+        LinearLayoutManager manager = new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false);
+        rcvAndroid.setLayoutManager(manager);
+        refresh.setRefreshHeader(null);
     }
 
     private void initLisenter() {
+        refresh.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
+            @Override
+            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+                presenter.getAndroidDate(count, ++ page);
+            }
+
+            @Override
+            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+
+            }
+        });
     }
 
     /**
@@ -52,6 +90,25 @@ public class GankAndroidFragment extends BaseFragment implements IGankAndroidVie
         //由于做不到basefragment，所以只有手动了
         presenter = null;
         unbinder.unbind();
+    }
+
+
+    @Override
+    public void onAndroidData_Success(List<AndroidBean> data) {
+        if (adapter == null){
+            androidData = data;
+            adapter = new GankAndroidAdapter(getContext(),androidData);
+            rcvAndroid.setAdapter(adapter);
+        }else {
+            androidData.addAll(data);
+        }
+        adapter.notifyDataSetChanged();
+        refresh.finishLoadMore();
+    }
+
+    @Override
+    public void onAndroidData_error(String e) {
+
     }
 
 }

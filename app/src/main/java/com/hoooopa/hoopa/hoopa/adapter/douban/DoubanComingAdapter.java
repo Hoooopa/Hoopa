@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import com.hoooopa.hoopa.hoopa.R;
 import com.hoooopa.hoopa.hoopa.bean.doubanbean.content.Subjects;
-import com.hoooopa.hoopa.hoopa.views.main.douban.main.IDoubanView;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -78,7 +77,6 @@ public class DoubanComingAdapter extends RecyclerView.Adapter<DoubanComingAdapte
             this.position = position;
         }
     }
-
 
 
     public interface onComingItemClickListener{

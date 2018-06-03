@@ -4,12 +4,8 @@ import com.hoooopa.hoopa.hoopa.bean.cookbean.cookid.CookFromIDBean;
 import com.hoooopa.hoopa.hoopa.bean.cookbean.cooklist.CookFromListBean;
 import com.hoooopa.hoopa.hoopa.bean.doubanbean.MovieListBean;
 import com.hoooopa.hoopa.hoopa.bean.doubanbean.UsMovieListBean;
-import com.hoooopa.hoopa.hoopa.bean.gankbean.android.Androidbean;
-import com.hoooopa.hoopa.hoopa.bean.gankbean.girls.GirlsBean;
-import com.hoooopa.hoopa.hoopa.bean.gankbean.ios.IosBean;
-import com.hoooopa.hoopa.hoopa.bean.gankbean.more.MoreBean;
-import com.hoooopa.hoopa.hoopa.bean.gankbean.video.VideoBean;
-import com.hoooopa.hoopa.hoopa.bean.gankbean.web.WebBean;
+import com.hoooopa.hoopa.hoopa.bean.gankbean.GankIoDataBean;
+
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
@@ -94,7 +90,7 @@ public interface HttpClient {
 
 
     //-------------------------Gank干货集中营api----------------------------------//
-    //数据类型： 福利 | Android | iOS | 休息视频 | 拓展资源 | 前端 | all
+    //数据类型： 福利 | Android | iOS | 休息视频 | 拓展资源 | 前端
 
     /**
      * 获取Android数据;以下类推
@@ -102,24 +98,26 @@ public interface HttpClient {
      * @param page  第几页 > 0
      * @return
      */
-    @HTTP(method = "GET" , path = "{Android/{count}/{page}" ,hasBody = false)
-    Observable<Androidbean> getGankAndroidData(@Path("count") int count, @Path("page") int page);
+    @GET("Android/{count}/{page}")
+    Observable<GankIoDataBean> getGankAndroidData(@Path("count") int count, @Path("page") int page);
 
-    @GET("{iOS/{count}/{page}")
-    Observable<IosBean> getGankIOSdData(@Path("count") int count, @Path("page") int page);
+    @GET("福利/{count}/{page}")
+    Observable<GankIoDataBean> getGankGirlsData(@Path("count") int count, @Path("page") int page);
+
+    @GET("休息视频/{count}/{page}")
+    Observable<GankIoDataBean> getGankVideoData(@Path("count") int count, @Path("page") int page);
+
+    // ios | 前段 | 拓展资源 放在all里头
+    @GET("iOS/{count}/{page}")
+    Observable<GankIoDataBean> getGankIOSdData(@Path("count") int count, @Path("page") int page);
+
+    @GET("前端/{count}/{page}")
+    Observable<GankIoDataBean> getGankWebData(@Path("count") int count, @Path("page") int page);
+
+    @GET("拓展资源/{count}/{page}")
+    Observable<GankIoDataBean> getGankMoreData(@Path("count") int count, @Path("page") int page);
 
 
-    @GET("{前端/{count}/{page}")
-    Observable<WebBean> getGankWebData(@Path("count") int count, @Path("page") int page);
-
-    @GET("{拓展资源/{count}/{page}")
-    Observable<MoreBean> getGankMoreData(@Path("count") int count, @Path("page") int page);
-
-    @GET("{福利/{count}/{page}")
-    Observable<GirlsBean> getGankGirlsData(@Path("count") int count, @Path("page") int page);
-
-    @GET("{休息视频/{count}/{page}")
-    Observable<VideoBean> getGankVideoData(@Path("count") int count, @Path("page") int page);
 
 
 }

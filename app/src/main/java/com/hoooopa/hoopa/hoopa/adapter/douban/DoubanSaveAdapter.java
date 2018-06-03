@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 
 import com.hoooopa.hoopa.hoopa.R;
 import com.hoooopa.hoopa.hoopa.bean.doubanbean.content.Subjects;
-import com.hoooopa.hoopa.hoopa.views.main.douban.main.DoubanPresenter;
 
 import java.util.List;
 

@@ -1,29 +1,35 @@
 package com.hoooopa.hoopa.hoopa.views.main.gank.android;
 
 import com.hoooopa.hoopa.hoopa.base.BasePresenter;
-import com.hoooopa.hoopa.hoopa.bean.gankbean.android.Androidbean;
+import com.hoooopa.hoopa.hoopa.bean.gankbean.AndroidBean;
+import com.hoooopa.hoopa.hoopa.bean.gankbean.GankIoDataBean;
+import com.hoooopa.hoopa.hoopa.views.main.gank.GankModel;
+import com.hoooopa.hoopa.hoopa.views.main.gank.IGankCallback;
+import com.hoooopa.hoopa.hoopa.views.main.gank.IGankView;
+
+import java.util.List;
 
 
-public class GankAndroidPresenter extends BasePresenter<IGankAndroidView> {
+public class GankAndroidPresenter extends BasePresenter<IGankView.IGankAndroidView> {
 
-    private IGankAndroidView view;
+    private IGankView.IGankAndroidView view;
 
-    public GankAndroidPresenter(IGankAndroidView view){
+    public GankAndroidPresenter(IGankView.IGankAndroidView view){
         this.view = view;
     }
 
 
-    public void getAndroidDate(){
+    public void getAndroidDate(int count , int page){
 
-        new GankAndroidModel().getAndroidData(10, 1, new IGankAndroidCallback() {
+        new GankModel().getAndroidData(count, page, new IGankCallback.IGankAndroidCallback() {
             @Override
-            public void onGankAndroidData_Success(Androidbean androidData) {
-                int a = androidData.getResults().get(0).getImages().length;
+            public void onGankAndroidData_Success(GankIoDataBean androidData) {
+                view.onAndroidData_Success(androidData.getResults());
             }
 
             @Override
-            public void onGankAndroidData_Error() {
-
+            public void onGankAndroidData_Error(String error) {
+                view.onAndroidData_error(error);
             }
         });
 

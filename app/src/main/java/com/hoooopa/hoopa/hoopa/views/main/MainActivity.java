@@ -1,9 +1,7 @@
 package com.hoooopa.hoopa.hoopa.views.main;
 
-import android.graphics.Color;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Toast;
@@ -11,13 +9,12 @@ import android.widget.Toast;
 import com.hoooopa.hoopa.hoopa.R;
 import com.hoooopa.hoopa.hoopa.base.BaseFragment;
 
-import com.hoooopa.hoopa.hoopa.views.main.cook.mian.CookFragment;
-import com.hoooopa.hoopa.hoopa.views.main.douban.main.DoubanFragment;
-import com.hoooopa.hoopa.hoopa.views.main.gank.main.GankFragment;
-import com.hoooopa.hoopa.hoopa.views.main.home.main.HomeFragment;
+import com.hoooopa.hoopa.hoopa.views.main.cook.mian.CookMainFragment;
+import com.hoooopa.hoopa.hoopa.views.main.douban.main.DoubanMainFragment;
+import com.hoooopa.hoopa.hoopa.views.main.gank.main.GankMainFragment;
+import com.hoooopa.hoopa.hoopa.views.main.home.main.HomeMainFragment;
 import com.hoooopa.hoopa.hoopa.views.main.last.main.LastFragment;
 import com.hoooopa.hoopa.hoopa.widget.MyViewPager;
-import com.jaeger.library.StatusBarUtil;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabReselectListener;
 import com.roughike.bottombar.OnTabSelectListener;
@@ -62,10 +59,10 @@ public class MainActivity extends AppCompatActivity {
      */
     private void initContentFragment(){
 
-        fragmentList.add(new HomeFragment());
-        fragmentList.add(new DoubanFragment());
-        fragmentList.add(new GankFragment());
-        fragmentList.add(new CookFragment());
+        fragmentList.add(new HomeMainFragment());
+        fragmentList.add(new DoubanMainFragment());
+        fragmentList.add(new GankMainFragment());
+        fragmentList.add(new CookMainFragment());
         fragmentList.add(new LastFragment());
         vpMain.setAdapter(new FragmentStatePagerAdapter(getSupportFragmentManager()) {
             @Override
