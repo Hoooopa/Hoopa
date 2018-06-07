@@ -20,5 +20,7 @@
     <color name="guide_bt_text">#75DDFB</color>
     <!--透明色-->
     <color name="transparent">#00000000</color>
+    <!--图标未选中颜色统一-->
+    <color name="icon_unselected_color">#757575</color>
 
 </resources>

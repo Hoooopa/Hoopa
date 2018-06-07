@@ -18,6 +18,7 @@ import com.hoooopa.hoopa.hoopa.widget.MyViewPager;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabReselectListener;
 import com.roughike.bottombar.OnTabSelectListener;
+import com.xiao.nicevideoplayer.NiceVideoPlayerManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -118,6 +119,11 @@ public class MainActivity extends AppCompatActivity {
      */
     @Override
     public void onBackPressed() {
+
+        if (NiceVideoPlayerManager.instance().onBackPressd()){
+            return;
+        }
+
         //下述IF判断用于实现“再按一次退出程序”功能
         if (System.currentTimeMillis() - mExitTime > 2000) {
             Toast.makeText(this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
@@ -125,6 +131,9 @@ public class MainActivity extends AppCompatActivity {
         } else {
             finish();
         }
+
+        super.onBackPressed();
+
     }
 
     @Override

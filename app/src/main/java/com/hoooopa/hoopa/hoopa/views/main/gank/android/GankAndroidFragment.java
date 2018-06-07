@@ -111,6 +111,7 @@ public class GankAndroidFragment extends BaseFragment implements IGankView.IGank
                 public void onItemClickListener(int position) {
                     Intent intent = new Intent(getActivity(), GankDetailActivity.class);
                     intent.putExtra("url",data.get(position).getUrl());
+                    intent.putExtra("title",data.get(position).getDesc());
                     startActivity(intent);
                 }
             });

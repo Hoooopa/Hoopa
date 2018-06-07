@@ -3,6 +3,8 @@ package com.hoooopa.hoopa.hoopa.views.main.gank.detail;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.webkit.WebView;
 import android.widget.TextView;
 
@@ -18,8 +20,13 @@ public class GankDetailActivity extends AppCompatActivity {
 
     @BindView(R.id.activity_gank_detail_webview)
     WebView webView;
+    @BindView(R.id.activity_gank_detail_Title)
+    TextView tvTitle;
+    @BindView(R.id.activity_gank_detail_toolbar)
+    Toolbar toolbar;
 
     private String url;
+    private String title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,17 +36,29 @@ public class GankDetailActivity extends AppCompatActivity {
 
         initData();
         initView();
+        initListener();
     }
 
     private void initData(){
         Intent intent = getIntent();
-        url =intent.getStringExtra("url");
+        url = intent.getStringExtra("url");
+        title = intent.getStringExtra("title");
     }
 
     private void initView(){
-
+        tvTitle.setText(title);
+        toolbar.setNavigationIcon(R.drawable.ic_back);
         webView.loadUrl(url);
 
+    }
+
+    private void initListener(){
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 
 }

@@ -10,6 +10,7 @@ import com.hoooopa.hoopa.hoopa.R;
 import com.hoooopa.hoopa.hoopa.base.BaseFragment;
 import com.hoooopa.hoopa.hoopa.bean.gankbean.AndroidBean;
 import com.hoooopa.hoopa.hoopa.views.main.gank.IGankView;
+import com.xiao.nicevideoplayer.NiceVideoPlayerManager;
 
 import java.util.List;
 
@@ -84,5 +85,11 @@ public class GankVideoFragment extends BaseFragment implements IGankView.IGankVi
         //由于做不到basefragment，所以只有手动了
         presenter = null;
         unbinder.unbind();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        NiceVideoPlayerManager.instance().releaseNiceVideoPlayer();
     }
 }

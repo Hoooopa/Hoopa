@@ -66,7 +66,12 @@ public class GankAndroidAdapter extends RecyclerView.Adapter<GankAndroidAdapter.
         if (data.get(position).getImages() == null){
             holder.img.setVisibility(View.GONE);
         }else {
-            Picasso.get().load(data.get(position).getImages().get(0)).into(holder.img);
+            try {
+                Picasso.get().load(data.get(position).getImages().get(0)).into(holder.img);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
         }
         holder.nameAndType.setText(data.get(position).getWho() + "·" +data.get(position).getType());
         String time1 = data.get(position).getPublishedAt().split("T")[0];
