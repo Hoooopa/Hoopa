@@ -1,12 +1,16 @@
 package com.hoooopa.hoopa.hoopa.views.main.gank.video;
 
 import android.os.Bundle;
+import android.print.PrinterId;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.hoooopa.hoopa.hoopa.R;
+import com.hoooopa.hoopa.hoopa.adapter.gank.GankVideoAdapter;
 import com.hoooopa.hoopa.hoopa.base.BaseFragment;
 import com.hoooopa.hoopa.hoopa.bean.gankbean.AndroidBean;
 import com.hoooopa.hoopa.hoopa.views.main.gank.IGankView;
@@ -27,11 +31,11 @@ public class GankVideoFragment extends BaseFragment implements IGankView.IGankVi
 
     private Unbinder unbinder;
 
-    @BindView(R.id.tstvideo)
-    TextView tst;
+    @BindView(R.id.fragment_gank_video_rcv)
+    RecyclerView rcvVideo;
 
     private GankVideoPresenter presenter;
-
+    private GankVideoAdapter adapter;
 
 
     private int count = 10;
@@ -57,18 +61,24 @@ public class GankVideoFragment extends BaseFragment implements IGankView.IGankVi
         presenter.getVideoData(count,page);
     }
 
+    private void initViews() {
+        LinearLayoutManager manager = new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false);
+        rcvVideo.setLayoutManager(manager);
+
+    }
+
     private void initLisenter() {
     }
 
-    private void initViews() {
-    }
+
 
 
 
 
     @Override
     public void onVideoData_Success(List<AndroidBean> data) {
-        tst.setText(data.get(0).getDesc());
+        adapter = new GankVideoAdapter(getContext(),data);
+        rcvVideo.setAdapter(adapter);
     }
 
     @Override

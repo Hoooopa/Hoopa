@@ -22,6 +22,8 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
+import com.xiao.nicevideoplayer.NiceVideoPlayer;
+import com.xiao.nicevideoplayer.NiceVideoPlayerManager;
 
 import java.util.List;
 import java.util.TooManyListenersException;
@@ -81,6 +83,16 @@ public class GankAndroidFragment extends BaseFragment implements IGankView.IGank
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
                 //目前不需要refresh操作
+            }
+        });
+
+        rcvAndroid.setRecyclerListener(new RecyclerView.RecyclerListener() {
+            @Override
+            public void onViewRecycled(RecyclerView.ViewHolder holder) {
+                NiceVideoPlayer niceVideoPlayer = ((RecyclerView.ViewHolder) holder).itemView.findViewById(R.id.item_gank_video_player);
+                if (niceVideoPlayer == NiceVideoPlayerManager.instance().getCurrentNiceVideoPlayer()) {
+                    NiceVideoPlayerManager.instance().releaseNiceVideoPlayer();
+                }
             }
         });
     }
