@@ -25,6 +25,8 @@ public class GankIoDataBean implements Serializable {
     private List<AndroidBean> results;
 
 
+
+
     public boolean isError() {
         return error;
     }

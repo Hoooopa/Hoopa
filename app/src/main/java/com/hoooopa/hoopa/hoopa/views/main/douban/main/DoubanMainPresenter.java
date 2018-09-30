@@ -23,9 +23,11 @@ public class DoubanMainPresenter extends BasePresenter<IDoubanView.IDoubanMainVi
         this.view = view;
     }
 
+    /**
+     * 获取和返回"轮播图"的数据
+     * @param count
+     */
     public void getBannerData(int count){
-
-        view.onBannerData_Start();
 
         new DoubanModel().getBannerData(count, new IDoubanCallback.IDoubanMainCallback.BannerCallback() {
             @Override
@@ -40,23 +42,23 @@ public class DoubanMainPresenter extends BasePresenter<IDoubanView.IDoubanMainVi
                     bannerImg.add(movieListBean.subjects.get(i).images.medium);
                 }
 
-                view.onBannerData_Success(movieListBean,bannerID,bannerTitle,bannerImg);
-
+                view.onBannerData_Success(bannerID, bannerTitle, bannerImg);
             }
 
             @Override
             public void onBannerData_Failed(String error) {
                 view.onBannerData_Failed(error);
             }
+
         });
-
-
 
     }
 
+    /**
+     * 获取了返回"即将上映"的数据
+     * @param count
+     */
     public void getComingData(int count){
-
-        view.onComing_Start();
 
         new DoubanModel().getComingData(count, new IDoubanCallback.IDoubanMainCallback.ComingCallback() {
             @Override
@@ -73,20 +75,8 @@ public class DoubanMainPresenter extends BasePresenter<IDoubanView.IDoubanMainVi
 
     }
 
-
     public void getSaveData() {
-//        //从数据库里拿数据
-//        if (true )
-//        {
-//            //如果没有数据
-//            view.onSaveData_null();
-//        }else  {
-
             List<Subjects> subjects = new ArrayList<>();
             view.onSaveData_Got(subjects);
-//        }
-
-
-
     }
 }

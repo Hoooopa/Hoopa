@@ -45,4 +45,11 @@ public class HomeMainFragment extends BaseFragment implements IHomeView {
         super.onDestroyView();
         unbinder.unbind();
     }
+
+    @Override
+    protected void onVisible() {
+
+    }
+
+
 }

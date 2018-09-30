@@ -13,7 +13,7 @@
             android:id="@+id/fragment_gank_android_rcv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/lightbackground"
+            android:background="@color/background_light"
             android:layout_marginBottom="10dp"/>
 
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>

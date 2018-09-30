@@ -14,26 +14,17 @@ public interface IGankView {
     }
 
     interface IGankGirlsView{
+
         void onGirlsData_Success(List<AndroidBean> data);
 
         void onGirlsData_error(String e);
     }
 
-    interface IGankVideoView{
-        void onVideoData_Success(List<AndroidBean> data);
 
-        void onVideoData_error(String e);
-    }
-
-    interface IGankAllView{
-
-        void onIosData_Success(List<AndroidBean> iosData);
-        void onIosData_Error(String e);
-
-        void onWebData_Success(List<AndroidBean> webData);
-        void onWebData_Error(String e);
+    interface IGankMoreView{
 
         void onMoreData_Success(List<AndroidBean> moreData);
+
         void onMoreData_Error(String e);
     }
 

@@ -45,4 +45,10 @@ public class LastFragment extends BaseFragment implements ILastView {
         super.onDestroyView();
         unbinder.unbind();
     }
+
+    @Override
+    protected void onVisible() {
+
+    }
+
 }

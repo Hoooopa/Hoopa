@@ -274,4 +274,9 @@ public class CookMainFragment extends BaseFragment implements ICookView.ICookMai
         unbinder.unbind();
     }
 
+    @Override
+    protected void onVisible() {
+
+    }
+
 }

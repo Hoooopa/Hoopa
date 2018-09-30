@@ -25,7 +25,7 @@ public class GankGirlsFragment extends BaseFragment implements IGankView.IGankGi
 
     @BindView(R.id.tvgirl)
     TextView v;
-    private GankGirlsPresenter presenter;
+    private GankGirlsPresenter presenter = new GankGirlsPresenter(this);;
 
     private int count = 10;
     private int page = 1;
@@ -34,19 +34,18 @@ public class GankGirlsFragment extends BaseFragment implements IGankView.IGankGi
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View view = inflater.inflate(R.layout.fragment_gank_girls,container,false);
         unbinder = ButterKnife.bind(this,view);
-        presenter = new GankGirlsPresenter(this);
         return view;
     }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState){
         super.onActivityCreated(savedInstanceState);
-        initData();
         initViews();
         initLisenter();
     }
+    @Override
 
-    private void initData(){
+    protected void onVisible() {
         presenter.getGrilsData(count,page);
     }
 
@@ -78,6 +77,9 @@ public class GankGirlsFragment extends BaseFragment implements IGankView.IGankGi
         presenter = null;
         unbinder.unbind();
     }
+
+
+
 
 
 }

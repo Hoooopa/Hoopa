@@ -10,11 +10,9 @@ import android.view.ViewGroup;
 
 import com.hoooopa.hoopa.hoopa.R;
 import com.hoooopa.hoopa.hoopa.base.BaseFragment;
-import com.hoooopa.hoopa.hoopa.base.IBaseView;
-import com.hoooopa.hoopa.hoopa.views.main.gank.all.GankAllFragment;
+import com.hoooopa.hoopa.hoopa.views.main.gank.more.GankMoreFragment;
 import com.hoooopa.hoopa.hoopa.views.main.gank.android.GankAndroidFragment;
 import com.hoooopa.hoopa.hoopa.views.main.gank.girls.GankGirlsFragment;
-import com.hoooopa.hoopa.hoopa.views.main.gank.video.GankVideoFragment;
 import com.hoooopa.hoopa.hoopa.widget.MyViewPager;
 
 import java.util.ArrayList;
@@ -58,18 +56,16 @@ public class GankMainFragment extends BaseFragment  {
 
     private void initDatas(){
         fragmentList.add(new GankAndroidFragment());
-        fragmentList.add(new GankAllFragment());
+        fragmentList.add(new GankMoreFragment());
         fragmentList.add(new GankGirlsFragment());
-        fragmentList.add(new GankVideoFragment());
         titleList.add("大安卓");
-        titleList.add("All");
+        titleList.add("More");
         titleList.add("福利");
-        titleList.add("小视频");
     }
 
     private void initViews() {
 
-        vpGank.setOffscreenPageLimit(4);
+        vpGank.setOffscreenPageLimit(3);
 
         vpGank.setAdapter(new FragmentStatePagerAdapter(getActivity().getSupportFragmentManager()) {
             @Override
@@ -88,7 +84,6 @@ public class GankMainFragment extends BaseFragment  {
         tbGank.getTabAt(0).setText(titleList.get(0));
         tbGank.getTabAt(1).setText(titleList.get(1));
         tbGank.getTabAt(2).setText(titleList.get(2));
-        tbGank.getTabAt(3).setText(titleList.get(3));
 
 
     }
@@ -113,6 +108,10 @@ public class GankMainFragment extends BaseFragment  {
 
     }
 
+    @Override
+    protected void onVisible() {
+
+    }
 
     /**
      * onDestroyView中进行解绑操作
@@ -122,4 +121,7 @@ public class GankMainFragment extends BaseFragment  {
         super.onDestroyView();
         unbinder.unbind();
     }
+
+
+
 }

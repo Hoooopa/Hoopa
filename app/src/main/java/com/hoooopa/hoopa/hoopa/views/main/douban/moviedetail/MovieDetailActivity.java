@@ -17,6 +17,9 @@ import com.hoooopa.hoopa.hoopa.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+/**
+ * 电影详情
+ */
 public class MovieDetailActivity extends AppCompatActivity {
 
 

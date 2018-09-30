@@ -8,8 +8,8 @@
     <!--灰色梯度：可以用于文字也可以用于背景-->
     <color name="textColorPrimary">#212121</color>
     <color name="textColorSecondary">#757575</color>
-    <color name="darkbackground">#BDBDBD</color>
-    <color name="lightbackground">#FAFAFA</color>
+    <color name="background_dark">#BDBDBD</color>
+    <color name="background_light">#FAFAFA</color>
     <!--纯色系-->
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>

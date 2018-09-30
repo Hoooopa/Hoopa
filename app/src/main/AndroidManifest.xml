@@ -27,6 +27,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".views.main.MainActivity" android:screenOrientation="portrait" android:exported="true"/>
         <activity android:name=".views.guide.GuideActivity" android:screenOrientation="portrait"/>
         <!--Cookbook菜谱的Activity-->
@@ -37,6 +38,7 @@
         <activity android:name=".views.main.douban.moviedetail.MovieDetailActivity" android:screenOrientation="portrait" android:exported="true"/>
         <!--GankIo的Activity-->
         <activity android:name=".views.main.gank.detail.GankDetailActivity" android:screenOrientation="portrait" android:exported="true"/>
+
     </application>
 
 </manifest>

@@ -49,6 +49,8 @@ public class DoubanMainFragment extends BaseFragment implements IDoubanView.IDou
     private DoubanComingAdapter comingAdapter;
     private DoubanSaveAdapter saveAdapter;
 
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View view = inflater.inflate(R.layout.fragment_douban,container,false);
@@ -60,19 +62,10 @@ public class DoubanMainFragment extends BaseFragment implements IDoubanView.IDou
     @Override
     public void onActivityCreated(Bundle savedInstanceState){
         super.onActivityCreated(savedInstanceState);
-        initDatas();
         initViews();
         initListener();
     }
 
-    private void initDatas(){
-        //轮播图建议6个数据.但是我还是要上10个数据
-        presenter.getBannerData(10);
-        //即将上映18个数据
-        presenter.getComingData(18);
-        //得到sava收藏的数据
-        presenter.getSaveData(); //按照节省流量的角度考虑，应该把被Save的电影的剧照给保存本地然后之后直接加载本地的图片。但是那个略麻烦，等以后再做
-    }
 
     private void initViews(){
         /**
@@ -96,14 +89,21 @@ public class DoubanMainFragment extends BaseFragment implements IDoubanView.IDou
         rcvSave.setNestedScrollingEnabled(false);
     }
 
-    private void initListener(){
+    /**
+     * 视图可视时进行数据的请求
+     */
+    @Override
+    protected void onVisible() {
 
-        bannerDouban.setOnBannerListener(new OnBannerListener() {
-            @Override
-            public void OnBannerClick(int position) {
+        presenter.getBannerData(10);//轮播图建议6个数据.但是我还是要上10个数据
+        presenter.getComingData(18);//即将上映18个数据
+        presenter.getSaveData();//得到sava收藏的数据//按照节省流量的角度考虑，应该把被Save的电影的剧照给保存本地然后之后直接加载本地的图片。但是那个略麻烦，等以后再做
 
-            }
-        });
+    }
+
+
+
+    private void initListener() {
 
     }
 
@@ -111,34 +111,35 @@ public class DoubanMainFragment extends BaseFragment implements IDoubanView.IDou
      * 一系列对Banner的操作
      */
     @Override
-    public void onBannerData_Start() {
-
-    }
-
-    @Override
     public void onBannerData_Failed(String error) {
 
     }
 
+    /**
+     * 设置轮播图的操作
+     * @param bannerID
+     * @param bannerTitle
+     * @param bannerImg
+     */
     @Override
-    public void onBannerData_Success(MovieListBean movieListBean, List<String> bannerID, List<String> bannerTitle, List<String> bannerImg) {
-
+    public void onBannerData_Success(final List<String> bannerID, List<String> bannerTitle, List<String> bannerImg) {
         bannerDouban.setBannerTitles(bannerTitle);
         bannerDouban.setImages(bannerImg);
+        bannerDouban.setOnBannerListener(new OnBannerListener() {
+            @Override
+            public void OnBannerClick(int position) {
+                Intent intent = new Intent(getActivity(),MovieDetailActivity.class);
+                intent.putExtra("id",bannerID.get(position));
+                startActivity(intent);
+            }
+        });
         bannerDouban.start();//开始你的轮播
-
     }
-
 
 
     /**
      * 一系列对“即将上映coming”的操作
      */
-    @Override
-    public void onComing_Start() {
-
-    }
-
     @Override
     public void onComing_Failed(String error) {
 
@@ -146,25 +147,28 @@ public class DoubanMainFragment extends BaseFragment implements IDoubanView.IDou
 
     @Override
     public void onComing_Success(List<Subjects> subjects) { //返回Subject直接用于Rcv。然后点击详情的时候也直接传这个Subject.get(i)就好
+
         comingAdapter = new DoubanComingAdapter(getContext(), subjects, new DoubanComingAdapter.onComingItemClickListener() {
             @Override
             public void onItemClickListener(Subjects subjects) {
-                Intent intent = new Intent();
-                intent.setClass(getActivity(), MovieDetailActivity.class);
-
+                //跳转到详情界面
+                Intent intent = new Intent(getActivity(),MovieDetailActivity.class);
+                intent.putExtra("id",subjects.id);
+                startActivity(intent);
             }
         });
+
         rcvComing.setAdapter(comingAdapter);
     }
 
-    @Override
-    public void onSaveData_null() {
-        //如果没有数据就显示(哎呀，把想看的电影收藏起来吧)
-    }
 
+    /**
+     * 在收藏的时候让用户选择 优先观看，稍后再看，先记着等状态    所以item需要有改变优先级、删除等操作
+     * @param subjects
+     */
     @Override
     public void onSaveData_Got(List<Subjects> subjects) {
-        //一个Recycleview，     .在收藏的时候让用户选择 优先观看，稍后再看，先记着等状态    所以item需要有改变优先级、删除等操作
+
         saveAdapter = new DoubanSaveAdapter(getContext(),subjects);
         rcvSave.setAdapter(saveAdapter);
     }
@@ -177,8 +181,7 @@ public class DoubanMainFragment extends BaseFragment implements IDoubanView.IDou
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+        presenter = null;
     }
-
-
 
 }

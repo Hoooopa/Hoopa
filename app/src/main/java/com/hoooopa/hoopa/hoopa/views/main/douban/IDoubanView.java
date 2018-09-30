@@ -8,15 +8,17 @@ import java.util.List;
 public interface IDoubanView {
 
     interface IDoubanMainView{
-        void onBannerData_Start();
-        void onBannerData_Failed(String error);
-        void onBannerData_Success(MovieListBean movieListBean , List<String> bannerID , List<String> bannerTitle , List<String> bannerImg);
 
-        void onComing_Start();
+        void onBannerData_Failed(String error);
+
+        void onBannerData_Success(List<String> bannerID , List<String> bannerTitle , List<String> bannerImg);
+
+
         void onComing_Failed(String error);
+
         void onComing_Success(List<Subjects> subjects);
 
-        void onSaveData_null();
+
         void onSaveData_Got(List<Subjects> subjects);
     }
 
