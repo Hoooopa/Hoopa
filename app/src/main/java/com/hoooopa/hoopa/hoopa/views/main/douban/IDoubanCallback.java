@@ -1,13 +1,13 @@
 package com.hoooopa.hoopa.hoopa.views.main.douban;
 
-import com.hoooopa.hoopa.hoopa.bean.doubanbean.MovieListBean;
-import com.hoooopa.hoopa.hoopa.bean.doubanbean.UsMovieListBean;
+import io.github.hoooopa.hooopa_core.bean.douban.MovieListBean;
+import io.github.hoooopa.hooopa_core.bean.douban.UsaMovieListBean;
 
 public interface IDoubanCallback {
 
     interface IDoubanMainCallback{
         /**
-         * 轮播图：正在热映
+         * 轮播图：(正在热映)
          */
         interface BannerCallback{
 
@@ -43,11 +43,11 @@ public interface IDoubanCallback {
         /**
          * 北美票房榜
          */
-        interface UsBoxCallback{
+        interface UsaCallback{
 
-            void onUsBoxData_Success(UsMovieListBean usMovieListBean);
+            void onUsaData_Success(UsaMovieListBean usaMovieListBean);
 
-            void onUsBoxData_Failed(String error);
+            void onUsaData_Failed(String error);
         }
 
     }

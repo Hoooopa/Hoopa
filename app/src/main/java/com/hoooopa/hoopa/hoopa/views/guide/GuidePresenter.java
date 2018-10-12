@@ -5,7 +5,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.hoooopa.hoopa.hoopa.R;
-import com.hoooopa.hoopa.hoopa.base.BasePresenter;
+import io.github.hoooopa.hooopa_core.base.BasePresenter;
 
 import java.util.ArrayList;
 import java.util.Calendar;

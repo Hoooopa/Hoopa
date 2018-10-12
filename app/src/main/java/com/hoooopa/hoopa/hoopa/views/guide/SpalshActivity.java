@@ -13,7 +13,7 @@ import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
 
 import com.hoooopa.hoopa.hoopa.R;
-import com.hoooopa.hoopa.hoopa.constants.Constants;
+import io.github.hoooopa.hooopa_core.constants.Constants;
 import com.hoooopa.hoopa.hoopa.views.main.MainActivity;
 
 import java.util.Calendar;

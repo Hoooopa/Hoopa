@@ -1,7 +1,6 @@
 package com.hoooopa.hoopa.hoopa.views.main.douban;
 
-import com.hoooopa.hoopa.hoopa.bean.doubanbean.MovieListBean;
-import com.hoooopa.hoopa.hoopa.bean.doubanbean.content.Subjects;
+import io.github.hoooopa.hooopa_core.bean.douban.content.Subjects;
 
 import java.util.List;
 
@@ -17,6 +16,16 @@ public interface IDoubanView {
         void onComing_Failed(String error);
 
         void onComing_Success(List<Subjects> subjects);
+
+
+        void onDoubanTop_Faild(String error);
+
+        void onDoubanTop_Success(List<Subjects> subjects);
+
+
+        void onUsa_Faild(String error);
+
+        void onUsa_Success(List<Subjects> subjects);
 
 
         void onSaveData_Got(List<Subjects> subjects);

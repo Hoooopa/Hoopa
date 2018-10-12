@@ -9,154 +9,270 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="@color/background_light">
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:background="@color/white">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <com.youth.banner.Banner
-            android:id="@+id/fragment_douban_banner"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="220dp"
-            app:image_scale_type="fit_xy"
-            />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginTop="210dp"
-            android:layout_marginStart="60dp"
-            android:layout_marginEnd="60dp"
-            android:orientation="horizontal"
-            android:background="@drawable/ll_douban_search_bg"
-            android:elevation="3dp"
-            >
+            android:layout_height="wrap_content">
 
-            <RelativeLayout
-                android:layout_width="40dp"
-                android:layout_height="match_parent">
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_douban_search"
-                    android:layout_centerInParent="true"
-                    />
-            </RelativeLayout>
-
-
-            <EditText
+            <com.youth.banner.Banner
+                android:id="@+id/fragment_douban_banner"
                 android:layout_width="match_parent"
+                android:layout_height="160dp"
+                app:image_scale_type="fit_xy" />
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="25dp"
+                android:textColor="@color/white"
+                android:text="热映中..."
+                android:gravity="center"
+                android:textSize="12sp"
+                android:background="#50212121"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="150dp"
+                android:layout_marginStart="60dp"
+                android:layout_marginEnd="60dp"
+                android:orientation="horizontal"
+                android:background="@drawable/ll_douban_search_bg"
+                android:elevation="3dp">
+
+                <RelativeLayout
+                    android:layout_width="40dp"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_douban_search"
+                        android:layout_centerInParent="true"
+                        />
+
+                </RelativeLayout>
+
+                <EditText
+                    android:id="@+id/fragment_douban_edt_search"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@null"
+                    android:layout_marginRight="20dp"
+                    android:gravity="center_vertical"
+                    android:hint="搜索电影"
+                    android:textSize="14sp"
+                    android:singleLine="true"
+                    android:focusable="false"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/fragment_douban_choose_bt"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="140dp"
+                android:paddingBottom="8dp"
+                android:paddingStart="8dp"
+                android:paddingEnd="10dp"
+                android:gravity="bottom">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:clickable="true"
+                    android:background="?android:selectableItemBackgroundBorderless">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/ic_icon_cloud"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="正在热映"
+                        android:textColor="@color/textColorPrimary"
+                        android:textSize="11sp"/>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:clickable="true"
+                    android:background="?android:selectableItemBackgroundBorderless">
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/ic_icon_sun"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="豆瓣Top"
+                        android:textColor="@color/textColorPrimary"
+                        android:textSize="11sp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:clickable="true"
+                    android:background="?android:selectableItemBackgroundBorderless">
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/ic_icon_moon"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="即将上映"
+                        android:textColor="@color/textColorPrimary"
+                        android:textSize="11sp"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/background_light"/>
+
+        <LinearLayout
+            android:id="@+id/fragment_douban_rl_coming"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="@color/white">
+
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:background="@null"
-                android:layout_marginRight="20dp"
-                android:gravity="center_vertical"
-                android:hint="搜索电影"
-                android:textSize="14sp"
-                android:singleLine="true"
+                android:gravity="center"
+                android:text="即将上映"
+                android:textStyle="bold"
+                android:layout_marginLeft="8dp"
+                android:textColor="#000"
                 />
 
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_icon_more_right"/>
+
         </LinearLayout>
 
-        <!--豆瓣Top250，北美票房榜等-->
-        <LinearLayout
-            android:id="@+id/fragment_douban_choose_bt"
+        <GridView
+            android:id="@+id/fragment_douban_gv_coming"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="300dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:numColumns="3"
+            android:gravity="center"
+            android:verticalSpacing="5dp"/>
+
+
+        <LinearLayout
+            android:id="@+id/fragment_douban_rl_doubantop"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
             android:orientation="horizontal"
-            android:layout_marginTop="200dp">
+            android:gravity="center_vertical"
+            android:paddingStart="8dp"
+            android:paddingEnd="16dp"
+            android:background="@color/white">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="豆瓣Top250"
+                android:textStyle="bold"
+                android:textColor="#000"
+                />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_icon_more_right"/>
+
+            <TextView
+                android:id="@+id/fragment_douban_tv_change"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="end|center_vertical"
+                android:text="换一批瞅瞅"
+                android:textSize="12sp"/>
 
         </LinearLayout>
 
-    </RelativeLayout>
-
-
-    <!--即将上映-->
-    <RelativeLayout
-        android:id="@+id/fragment_douban_coming"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:background="@color/white">
-
-        <View
-            android:layout_width="3dp"
-            android:layout_height="match_parent"
-            android:layout_marginTop="7dp"
-            android:layout_marginBottom="7dp"
-            android:layout_marginLeft="7dp"
-            android:background="@color/background_dark" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+        <GridView
+            android:id="@+id/fragment_douban_gv_doubantop"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:numColumns="3"
             android:gravity="center"
-            android:text="即将上映"
-            android:layout_marginLeft="15dp"
-            android:textColor="#000"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="查看更多"
-            android:gravity="center"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp"
-            android:textSize="12sp"
-            />
+            android:verticalSpacing="5dp"/>
 
-    </RelativeLayout>
+        <LinearLayout
+            android:id="@+id/fragment_douban_rl_save"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="@color/white">
 
-    <LinearLayout
-        android:id="@+id/fragment_douban_ll_coming"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="收藏"
+                android:textStyle="bold"
+                android:layout_marginLeft="8dp"
+                android:textColor="#000"
+                />
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/fragment_douban_rcv_coming"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
-            />
-
-    </LinearLayout>
-
-
-    <RelativeLayout
-        android:id="@+id/fragment_douban_rl_save"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_marginTop="4dp"
-        android:background="@color/white">
-
-        <View
-            android:layout_width="3dp"
-            android:layout_height="match_parent"
-            android:layout_marginTop="7dp"
-            android:layout_marginBottom="7dp"
-            android:layout_marginLeft="7dp"
-            android:background="@color/background_dark" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="收藏"
-            android:layout_marginLeft="15dp"
-            android:textColor="#000"
-            />
-    </RelativeLayout>
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_icon_more_right"/>
+        </LinearLayout>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/fragment_douban_rcv_save"
+            android:nestedScrollingEnabled="false"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
-
-    </FrameLayout>
 
     </LinearLayout>
 

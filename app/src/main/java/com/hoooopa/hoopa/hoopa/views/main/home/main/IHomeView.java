@@ -1,6 +1,6 @@
 package com.hoooopa.hoopa.hoopa.views.main.home.main;
 
-import com.hoooopa.hoopa.hoopa.base.IBaseView;
+import io.github.hoooopa.hooopa_core.base.IBaseView;
 
 /**
  * Created by Pray on 2018/4/27.

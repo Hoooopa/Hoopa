@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Hoopa.iml" filepath="$PROJECT_DIR$/Hoopa.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hooopa-core/hooopa-core.iml" filepath="$PROJECT_DIR$/hooopa-core/hooopa-core.iml" />
     </modules>
   </component>
 </project>

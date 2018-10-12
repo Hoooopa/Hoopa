@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.hoooopa.hoopa.hoopa.R;
-import com.hoooopa.hoopa.hoopa.base.BaseFragment;
+import io.github.hoooopa.hooopa_core.base.BaseFragment;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -21,7 +21,6 @@ public class HomeMainFragment extends BaseFragment implements IHomeView {
 
     private HomePresenter presenter;
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View view = inflater.inflate(R.layout.fragment_home,container,false);
@@ -29,13 +28,6 @@ public class HomeMainFragment extends BaseFragment implements IHomeView {
         presenter = new HomePresenter();
         return view;
     }
-
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState){
-        super.onActivityCreated(savedInstanceState);
-
-    }
-
 
     /**
      * onDestroyView中进行解绑操作

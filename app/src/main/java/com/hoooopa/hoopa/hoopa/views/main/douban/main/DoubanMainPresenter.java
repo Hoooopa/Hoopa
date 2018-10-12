@@ -1,15 +1,15 @@
 package com.hoooopa.hoopa.hoopa.views.main.douban.main;
 
-import com.hoooopa.hoopa.hoopa.base.BasePresenter;
-import com.hoooopa.hoopa.hoopa.bean.doubanbean.MovieListBean;
-import com.hoooopa.hoopa.hoopa.bean.doubanbean.UsMovieListBean;
-import com.hoooopa.hoopa.hoopa.bean.doubanbean.content.Subjects;
+import io.github.hoooopa.hooopa_core.base.BasePresenter;
+import io.github.hoooopa.hooopa_core.bean.douban.MovieListBean;
+import io.github.hoooopa.hooopa_core.bean.douban.content.Subjects;
 import com.hoooopa.hoopa.hoopa.views.main.douban.DoubanModel;
 import com.hoooopa.hoopa.hoopa.views.main.douban.IDoubanCallback;
 import com.hoooopa.hoopa.hoopa.views.main.douban.IDoubanView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by Pray on 2018/4/27.
@@ -23,13 +23,15 @@ public class DoubanMainPresenter extends BasePresenter<IDoubanView.IDoubanMainVi
         this.view = view;
     }
 
+    private DoubanModel doubanModel = new DoubanModel();
+
     /**
      * 获取和返回"轮播图"的数据
-     * @param count
+     * @param
      */
-    public void getBannerData(int count){
+    public void getBannerData(){
 
-        new DoubanModel().getBannerData(count, new IDoubanCallback.IDoubanMainCallback.BannerCallback() {
+        doubanModel.getBannerData(8, new IDoubanCallback.IDoubanMainCallback.BannerCallback() {
             @Override
             public void onBannerData_Success(MovieListBean movieListBean) {
                 List<String> bannerID = new ArrayList<>();
@@ -54,13 +56,14 @@ public class DoubanMainPresenter extends BasePresenter<IDoubanView.IDoubanMainVi
 
     }
 
+
     /**
      * 获取了返回"即将上映"的数据
-     * @param count
+     * @param
      */
-    public void getComingData(int count){
+    public void getComingData(){
 
-        new DoubanModel().getComingData(count, new IDoubanCallback.IDoubanMainCallback.ComingCallback() {
+        doubanModel.getComingData(6, new IDoubanCallback.IDoubanMainCallback.ComingCallback() {
             @Override
             public void onComingData_Success(MovieListBean movieListBean) {
                 List<Subjects> subjects = movieListBean.subjects;
@@ -73,6 +76,21 @@ public class DoubanMainPresenter extends BasePresenter<IDoubanView.IDoubanMainVi
             }
         });
 
+    }
+
+    public void getDoubanTopData(){
+        doubanModel.getTop250Data(new Random().nextInt(244),6, new IDoubanCallback.IDoubanMainCallback.Top250Callback() {
+            @Override
+            public void onDoubanTop250_Success(MovieListBean movieListBean) {
+                List<Subjects> subjects = movieListBean.subjects;
+                view.onDoubanTop_Success(subjects);
+            }
+
+            @Override
+            public void onDoubanTop250_Failed(String error) {
+
+            }
+        });
     }
 
     public void getSaveData() {

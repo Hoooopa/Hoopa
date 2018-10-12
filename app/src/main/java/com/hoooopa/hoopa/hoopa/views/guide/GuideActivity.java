@@ -11,7 +11,7 @@ import android.widget.Button;
 
 import com.hoooopa.hoopa.hoopa.R;
 import com.hoooopa.hoopa.hoopa.adapter.GuideAdapter;
-import com.hoooopa.hoopa.hoopa.base.BaseActivity;
+import io.github.hoooopa.hooopa_core.base.BaseActivity;
 import com.hoooopa.hoopa.hoopa.views.main.MainActivity;
 
 import java.util.List;

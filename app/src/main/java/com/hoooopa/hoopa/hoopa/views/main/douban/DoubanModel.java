@@ -1,9 +1,9 @@
 package com.hoooopa.hoopa.hoopa.views.main.douban;
 
-import com.hoooopa.hoopa.hoopa.bean.doubanbean.MovieListBean;
-import com.hoooopa.hoopa.hoopa.bean.doubanbean.UsMovieListBean;
-import com.hoooopa.hoopa.hoopa.constants.Constants;
-import com.hoooopa.hoopa.hoopa.http.HttpClient;
+import io.github.hoooopa.hooopa_core.bean.douban.MovieListBean;
+import io.github.hoooopa.hooopa_core.bean.douban.UsaMovieListBean;
+import io.github.hoooopa.hooopa_core.constants.Constants;
+import io.github.hoooopa.hooopa_core.net.HttpClient;
 
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -105,25 +105,25 @@ public class DoubanModel {
                 });
     }
 
-    public void getUsBoxData(final IDoubanCallback.IDoubanMainCallback.UsBoxCallback callback){
+    public void getUsaData(final IDoubanCallback.IDoubanMainCallback.UsaCallback callback){
         retrofit.create(HttpClient.class)
-                .getMovieUsBox()
+                .getMovieUsa()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<UsMovieListBean>() {
+                .subscribe(new Observer<UsaMovieListBean>() {
                     @Override
                     public void onSubscribe(Disposable d) {
 
                     }
 
                     @Override
-                    public void onNext(UsMovieListBean usMovieListBean) {
-                        callback.onUsBoxData_Success(usMovieListBean);
+                    public void onNext(UsaMovieListBean usMovieListBean) {
+                        callback.onUsaData_Success(usMovieListBean);
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        callback.onUsBoxData_Failed(e.toString());
+                        callback.onUsaData_Failed(e.toString());
                     }
 
                     @Override

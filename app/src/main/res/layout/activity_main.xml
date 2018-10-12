@@ -3,29 +3,147 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    android:orientation="vertical"
     >
 
-    <com.hoooopa.hoopa.hoopa.widget.MyViewPager
-        android:id="@+id/activity_main_vp"
+    <android.support.v4.widget.DrawerLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/v1"/>
+        android:id="@+id/activity_main_drawer"
+        >
 
-    <View
-        android:id="@+id/v1"
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="@color/bottombarView"
-        android:layout_above="@id/activity_main_bottombar"
-        />
+        <!--左边抽屉，在这里一定要设置layout_gravity="start"  ，并且宽度不能超过320dp-->
+        <include layout="@layout/include_drawer"
+            android:layout_width="240dp"
+            android:layout_height="match_parent"
+            android:layout_gravity='start' />
 
-    <com.roughike.bottombar.BottomBar
-        android:id="@+id/activity_main_bottombar"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_alignParentBottom="true"
-        app:bb_tabXmlResource="@xml/bottombar_main" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
 
+            <FrameLayout
+                android:id="@+id/activity_main_status_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                />
+
+            <RelativeLayout
+                android:id="@+id/activity_main_rl"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_below="@id/activity_main_status_bar"
+                android:background="@color/colorPrimary">
+
+                <FrameLayout
+                    android:id="@+id/activity_main_fl_drawer"
+                    android:layout_width="52dp"
+                    android:layout_height="match_parent"
+                    android:clickable="true"
+
+                    >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/icon_drawer"
+                        android:layout_gravity="center"
+                        />
+
+                </FrameLayout>
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    android:orientation="horizontal">
+
+                    <FrameLayout
+                        android:id="@+id/activity_main_fl_home"
+                        android:layout_width="52dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="10dp"
+                        android:background="?android:selectableItemBackgroundBorderless">
+
+                        <ImageView
+                            android:id="@+id/activity_main_img_home"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/icon_home"
+                            android:layout_gravity="center"
+                            />
+
+
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:id="@+id/activity_main_fl_wan"
+                        android:layout_width="52dp"
+                        android:layout_height="match_parent"
+                        android:clickable="true"
+                        android:background="?android:selectableItemBackgroundBorderless">
+
+                        <ImageView
+                            android:id="@+id/activity_main_img_wan"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/icon_wan"
+                            android:layout_gravity="center"/>
+
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:id="@+id/activity_main_fl_douban"
+                        android:layout_width="52dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:background="?android:selectableItemBackgroundBorderless">
+
+                        <ImageView
+                            android:id="@+id/activity_main_img_douban"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/icon_dou"
+                            android:layout_gravity="center"/>
+
+                    </FrameLayout>
+
+
+                </LinearLayout>
+
+                <FrameLayout
+                    android:id="@+id/activity_main_fl_search"
+                    android:layout_width="52dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:clickable="true">
+
+                    <ImageView
+                        android:id="@+id/activity_main_img_search"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_search"
+                        android:layout_gravity="center"/>
+
+                </FrameLayout>
+
+            </RelativeLayout>
+
+
+            <io.github.hoooopa.hooopa_core.widget.MyViewPager
+                android:id="@+id/activity_main_vp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/activity_main_rl" />
+
+
+        </RelativeLayout>
+
+    </android.support.v4.widget.DrawerLayout>
 </RelativeLayout>
+
+
+
